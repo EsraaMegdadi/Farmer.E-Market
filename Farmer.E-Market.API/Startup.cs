@@ -1,5 +1,9 @@
 using Farmer.Core.Common;
+using Farmer.Core.Repository;
+using Farmer.Core.Service;
 using Farmer.Infra.Common;
+using Farmer.Infra.Repository;
+using Farmer.Infra.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -47,6 +51,14 @@ namespace Farmer.E_Market.API
                 };
             });
             services.AddScoped<IDBContext, DBContext>();
+            services.AddScoped<IProductsRepository, ProductsRepository>();
+            services.AddScoped<IProductsService, ProductsService>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IReviewRepository, ReviewRepository>();
+            services.AddScoped<IReviewService, ReviewService>();
+            services.AddScoped<ITestimonialRepository, TestimonialRepository>();
+            services.AddScoped<ITestimonialService, TestimonialService>();
             services.AddControllers();
         }
 
