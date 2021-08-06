@@ -67,6 +67,8 @@ namespace Farmer.E_Market.API
             services.AddScoped<IReviewService, ReviewService>();
             services.AddScoped<ITestimonialRepository, TestimonialRepository>();
             services.AddScoped<ITestimonialService, TestimonialService>();
+            services.AddScoped<IJWTUserAuthService, JWTUserAuthService>();
+
             services.AddControllers();
         }
 
