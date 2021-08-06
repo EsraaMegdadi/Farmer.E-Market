@@ -51,6 +51,14 @@ namespace Farmer.E_Market.API
                 };
             });
             services.AddScoped<IDBContext, DBContext>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IAboutUsRepository, AboutUsRepository>();
+           // services.AddScoped<IAboutUsService, AboutUsService>();
+
+
+
+
             services.AddScoped<IProductsRepository, ProductsRepository>();
             services.AddScoped<IProductsService, ProductsService>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
@@ -75,6 +83,7 @@ namespace Farmer.E_Market.API
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {
