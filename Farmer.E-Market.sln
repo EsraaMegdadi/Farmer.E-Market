@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Farmer.E-Market.API", "Farmer.E-Market.API\Farmer.E-Market.API.csproj", "{C5AF0F89-BCA3-4215-A0C4-649350CBE5D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Farmer.Core", "Farmer.Core\Farmer.Core.csproj", "{1F0E0A40-9DE6-4914-AE82-EB0AB22CD420}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Farmer.Core", "Farmer.Core\Farmer.Core.csproj", "{1F0E0A40-9DE6-4914-AE82-EB0AB22CD420}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Farmer.Infra", "Farmer.Infra\Farmer.Infra.csproj", "{FFAAE702-C206-4900-8C7C-39A3DC0D93C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Farmer.Infra", "Farmer.Infra\Farmer.Infra.csproj", "{FFAAE702-C206-4900-8C7C-39A3DC0D93C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

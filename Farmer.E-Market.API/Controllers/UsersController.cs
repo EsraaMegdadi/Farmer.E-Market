@@ -11,7 +11,7 @@ namespace Farmer.E_Market.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class UsersController : Controller
     {
         private readonly IUserService UserService;
         public UsersController(IUserService userService)
