@@ -11,7 +11,7 @@ namespace Farmer.E_Market.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class InvoiceController : ControllerBase
+    public class InvoiceController : Controller
     {
         private readonly IInvoiceService InvoiceService;
         public InvoiceController(IInvoiceService invoiceService)

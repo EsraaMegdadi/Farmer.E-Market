@@ -11,7 +11,7 @@ namespace Farmer.E_Market.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CreditCardController : ControllerBase
+    public class CreditCardController : Controller
     {
         private readonly ICreditCardService CreditCardService;
         public CreditCardController(ICreditCardService creditCardService)
