@@ -10,6 +10,6 @@ namespace Farmer.Core.Repository
         List<UserTransaction> GetAll();
         int Create(UserTransaction Data);
         int Update(UserTransaction Data);
-        int Delete(UserTransaction Id);
+        int Delete(int Id);
     }
 }
