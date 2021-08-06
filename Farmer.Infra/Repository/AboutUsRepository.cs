@@ -29,7 +29,7 @@ namespace Farmer.Infra.Repository
         {
             var p = new DynamicParameters();
             p.Add("Description", Data.Description, dbType: DbType.String, direction: ParameterDirection.Input);
-            var result = DBContext.Connection.ExecuteAsync("CreateAboutUs", p, commandType: CommandType.StoredProcedure);
+            var result = DBContext.Connection.ExecuteAsync("CreateAboutUss", p, commandType: CommandType.StoredProcedure);
 
             return 1;
         }

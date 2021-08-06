@@ -42,11 +42,13 @@ namespace Farmer.Infra.Repository
         public int Update(Users Data)
         {
             var p = new DynamicParameters();
+            p.Add("UserId", Data.UserID, dbType: DbType.Int32, direction: ParameterDirection.Input);
             p.Add("UserName", Data.UserName, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("Email", Data.Email, dbType: DbType.String, direction: ParameterDirection.Input);
+            p.Add("Password", Data.Password, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("Gender", Data.Gender, dbType: DbType.String, direction: ParameterDirection.Input);
-            p.Add("Age", Data.Age, dbType: DbType.Int32, direction: ParameterDirection.Input);
             p.Add("LocationId", Data.LocationId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("Age", Data.Age, dbType: DbType.Int32, direction: ParameterDirection.Input);
             p.Add("RoleId", Data.RoleId, dbType: DbType.Int32, direction: ParameterDirection.Input);
             var result = DBContext.Connection.ExecuteAsync("UpdateUsers", p, commandType: CommandType.StoredProcedure);
             return 1;

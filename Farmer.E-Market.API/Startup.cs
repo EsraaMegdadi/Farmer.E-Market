@@ -54,9 +54,9 @@ namespace Farmer.E_Market.API
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IAboutUsRepository, AboutUsRepository>();
-           // services.AddScoped<IAboutUsService, AboutUsService>();
-
-
+            services.AddScoped<IAboutUsService, AboutUsService>();
+            services.AddScoped<ILocationRepository, LocationRepository>();
+            services.AddScoped<ILocationService, LocationService>();
 
 
             services.AddControllers();
