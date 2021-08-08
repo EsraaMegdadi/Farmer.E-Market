@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Farmer.Core.Repository
 {
-    public interface IInvoiceRepositorycs
+    public interface IInvoiceRepository
     {
         List<Invoice> GetAll();
         int Create(Invoice Data);

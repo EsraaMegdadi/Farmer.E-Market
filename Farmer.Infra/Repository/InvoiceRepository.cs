@@ -10,7 +10,7 @@ using System.Text;
 
 namespace Farmer.Infra.Repository
 {
-   public class InvoiceRepository:IInvoiceRepositorycs
+   public class InvoiceRepository:IInvoiceRepository
     {
         private readonly IDBContext DBcontext;
         public InvoiceRepository(IDBContext dBContext)
