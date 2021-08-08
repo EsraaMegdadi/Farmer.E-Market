@@ -26,7 +26,7 @@ namespace Farmer.Infra.Repository
         {
             var p = new DynamicParameters();
             //p.Add("@CategoryID", Data.CategoryID, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            p.Add("@CategoryName", Data.CategoryName, dbType: DbType.String, direction: ParameterDirection.Input);
+            p.Add("CategoryName", Data.CategoryName, dbType: DbType.String, direction: ParameterDirection.Input);
 
             var Result = DBcontext.Connection.ExecuteAsync("CreateCategory", p, commandType: CommandType.StoredProcedure);
             return 1;
@@ -34,15 +34,15 @@ namespace Farmer.Infra.Repository
         public int Update(Category Data)
         {
             var p = new DynamicParameters();
-            p.Add("@CategoryID", Data.CategoryID, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            p.Add("@CategoryName", Data.CategoryName, dbType: DbType.String, direction: ParameterDirection.Input);
+            p.Add("CategoryID", Data.CategoryID, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("CategoryName", Data.CategoryName, dbType: DbType.String, direction: ParameterDirection.Input);
             var Result = DBcontext.Connection.ExecuteAsync("UpdateCategory", p, commandType: CommandType.StoredProcedure);
             return 1;
         }
         public int Delete(int Id)
         {
             var P = new DynamicParameters();
-            P.Add("@CategoryID", Id, DbType.Int32, direction: ParameterDirection.Input);
+            P.Add("CategoryID", Id, DbType.Int32, direction: ParameterDirection.Input);
             var Result = DBcontext.Connection.ExecuteAsync("DeleteCategory", P, commandType: CommandType.StoredProcedure);
             return 1;
         }
