@@ -26,14 +26,15 @@ namespace Farmer.E_Market.API.Controllers
             return ProductsService.GetAll();
         }
         [HttpPost]
-        [ProducesResponseType(typeof(List<Products>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Products), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
         public Products Create([FromBody] Products products)
         {
             return ProductsService.Create(products);
         }
         [HttpPut]
-        [ProducesResponseType(typeof(List<Products>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Products), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public Products Update([FromBody] Products product)
         {
