@@ -22,6 +22,7 @@ Global
 		{1F0E0A40-9DE6-4914-AE82-EB0AB22CD420}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F0E0A40-9DE6-4914-AE82-EB0AB22CD420}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FFAAE702-C206-4900-8C7C-39A3DC0D93C7}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{FFAAE702-C206-4900-8C7C-39A3DC0D93C7}.Debug|Any CPU.Build.0 = Release|Any CPU
 		{FFAAE702-C206-4900-8C7C-39A3DC0D93C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FFAAE702-C206-4900-8C7C-39A3DC0D93C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
