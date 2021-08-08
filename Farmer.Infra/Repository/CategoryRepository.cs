@@ -43,7 +43,6 @@ namespace Farmer.Infra.Repository
         {
             var P = new DynamicParameters();
             P.Add("@CategoryID", Id, DbType.Int32, direction: ParameterDirection.Input);
-
             var Result = DBcontext.Connection.ExecuteAsync("DeleteCategory", P, commandType: CommandType.StoredProcedure);
             return 1;
         }

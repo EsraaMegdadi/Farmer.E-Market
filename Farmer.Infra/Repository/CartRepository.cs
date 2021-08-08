@@ -49,7 +49,7 @@ namespace Farmer.Infra.Repository
         {
             var Par = new DynamicParameters();
             Par.Add("@CartId", Id, DbType.Int32, direction: ParameterDirection.Input);
-            var Result = DBcontext.Connection.ExecuteAsync("DeleteCart", Par, commandType: CommandType.StoredProcedure);
+            var Result = DBcontext.Connection.ExecuteAsync("DeleteCarts", Par, commandType: CommandType.StoredProcedure);
             return 1;
         }
     }
