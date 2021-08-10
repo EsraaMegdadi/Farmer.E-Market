@@ -10,9 +10,20 @@ namespace Farmer.Core.Data
     {
         [Key]
         public int InvoiceId { get; set; }
+        [Display(Name = "InvoiceNumber")]
+        [Required(ErrorMessage = "Enter InvoiceNumber")]
         public int InvoiceNumber { get; set; }
+
+        [Display(Name = "InvoiceDate")]
+        [Required(ErrorMessage = "Enter InvoiceDate")]
         public DateTime InvoiceDate { get; set; }
+
+        [Display(Name = "TotalInvoice")]
+        [Required(ErrorMessage = "Enter TotalInvoice")]
         public double TotalInvoice { get; set; }
+
+        [Display(Name = "UserId")]
+        [Required(ErrorMessage = "Enter UserId")]
 
         [ForeignKey("UserId")]
         public int UserId { get; set; }
