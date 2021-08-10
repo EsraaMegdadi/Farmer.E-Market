@@ -27,10 +27,10 @@ namespace Farmer.Infra.Repository
             {
                 var p = new DynamicParameters();
                 p.Add("ProductName", Data.ProductName, dbType: DbType.String, direction: ParameterDirection.Input);
-                p.Add("ProductPrice", Data.ProductPrice, dbType: DbType.Int32, direction: ParameterDirection.Input);
+                p.Add("ProductPrice", Data.ProductPrice, dbType: DbType.Double, direction: ParameterDirection.Input);
                 p.Add("ProductImg", Data.ProductImg, dbType: DbType.String, direction: ParameterDirection.Input);
                 p.Add("ProductQuantity", Data.ProductQuantity, dbType: DbType.Int32, direction: ParameterDirection.Input);
-                p.Add("CategoryID", Data.ProductName, dbType: DbType.Int32, direction: ParameterDirection.Input);
+                p.Add("CategoryID", Data.CategoryID, dbType: DbType.Int32, direction: ParameterDirection.Input);
                 p.Add("UserID", Data.UserID, dbType: DbType.Int32, direction: ParameterDirection.Input);
 
 
@@ -42,10 +42,10 @@ namespace Farmer.Infra.Repository
                 var p = new DynamicParameters();
                 p.Add("ProductID", Data.ProductID, dbType: DbType.Int32, direction: ParameterDirection.Input);
                 p.Add("ProductName", Data.ProductName, dbType: DbType.String, direction: ParameterDirection.Input);
-                p.Add("ProductPrice", Data.ProductPrice, dbType: DbType.Int32, direction: ParameterDirection.Input);
+                p.Add("ProductPrice", Data.ProductPrice, dbType: DbType.Double, direction: ParameterDirection.Input);
                 p.Add("ProductImg", Data.ProductImg, dbType: DbType.String, direction: ParameterDirection.Input);
                 p.Add("ProductQuantity", Data.ProductQuantity, dbType: DbType.Int32, direction: ParameterDirection.Input);
-                p.Add("CategoryID", Data.ProductName, dbType: DbType.Int32, direction: ParameterDirection.Input);
+                p.Add("CategoryID", Data.CategoryID, dbType: DbType.Int32, direction: ParameterDirection.Input);
                 p.Add("UserID", Data.UserID, dbType: DbType.Int32, direction: ParameterDirection.Input);
                 var Result = DBcontext.Connection.ExecuteAsync("UpdateProduct", p, commandType: CommandType.StoredProcedure);
                 return 1;

@@ -17,7 +17,7 @@ namespace Farmer.Core.Data
 
         [Display(Name = "ProductPrice")]
         [Required(ErrorMessage = "Enter ProductPrice")]
-        public float ProductPrice { get; set; }
+        public Double ProductPrice { get; set; }
 
         [Display(Name = "ProductImg")]
         [Required(ErrorMessage = "Enter ProductImg")]

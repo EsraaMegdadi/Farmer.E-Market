@@ -66,7 +66,6 @@ namespace Farmer.E_Market.API
             services.AddScoped<ITestimonialRepository, TestimonialRepository>();
             services.AddScoped<ITestimonialService, TestimonialService>();
             services.AddScoped<IJWTUserAuthService, JWTUserAuthService>();
-
             services.AddScoped<ICartRepository, CartRepository>();
             services.AddScoped<ICartService, CartService>();
             services.AddScoped<ICreditCardRepository, CreditCardRepository>();
@@ -75,6 +74,8 @@ namespace Farmer.E_Market.API
             services.AddScoped<IInvoiceService, InvoiceService>();
             services.AddScoped<IUserTransactionRepository, UserTransactionRepository>();
             services.AddScoped<IUserTransactionService, UserTransactionService>();
+            services.AddScoped<IHomePageRepository, HomePageRepository>();
+            services.AddScoped<IHomePageService, HomePageService>();
             services.AddControllers();
         }
 
