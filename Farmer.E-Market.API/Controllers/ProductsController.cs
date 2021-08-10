@@ -36,9 +36,9 @@ namespace Farmer.E_Market.API.Controllers
         [HttpPut]
         [ProducesResponseType(typeof(Products), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public Products Update([FromBody] Products product)
+        public Products Update([FromBody] Products products)
         {
-            return ProductsService.Update(product);
+            return ProductsService.Update(products);
         }
 
         [HttpDelete("{id}")]
