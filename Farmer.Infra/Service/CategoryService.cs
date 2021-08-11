@@ -4,6 +4,7 @@ using Farmer.Core.Service;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Farmer.Infra.Service
 {
@@ -34,5 +35,12 @@ namespace Farmer.Infra.Service
             categoryRepository.Delete(id);
             return new Category();
         }
+
+        public async Task<List<Category>> GetAllCategoryProducts()
+        {
+            return await categoryRepository.GetAllCategoryProducts();       
+        }
+
+      
     }
 }

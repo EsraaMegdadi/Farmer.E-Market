@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Farmer.Core.Service
 {
@@ -11,5 +12,6 @@ namespace Farmer.Core.Service
         Category Create(Category category);
         Category Update(Category category);
         Category Delete(int id);
+        Task<List<Category>> GetAllCategoryProducts();
     }
 }

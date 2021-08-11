@@ -13,7 +13,46 @@ namespace Farmer.E_Market.API.Controllers
     [ApiController]
     public class AboutUsController : Controller
     {
-        
+        private readonly IAboutUsService AboutUsService;
+        public AboutUsController(IAboutUsService aboutUsService)
+        {
+            AboutUsService = aboutUsService;
+        }
+        [HttpGet]
+        [ProducesResponseType(typeof(List<AboutUs>), StatusCodes.Status200OK)]
+        public List<AboutUs> GetAll()
+        {
+            return AboutUsService.GetAll();
+        }
+        [HttpPost]
+        [ProducesResponseType(typeof(AboutUs), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+        public AboutUs Create([FromBody] AboutUs aboutUs)
+        {
+            return AboutUsService.Create(aboutUs);
+        }
+
+
+
+        [HttpPut]
+        [ProducesResponseType(typeof(AboutUs), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(AboutUs), StatusCodes.Status400BadRequest)]
+
+        public AboutUs Update([FromBody] AboutUs aboutUs)
+        {
+            return AboutUsService.Update(aboutUs);
+        }
+
+
+        [HttpDelete("{id}")]
+        public AboutUs Delete(int id)
+        {
+            return AboutUsService.Delete(id);
+        }
+
+
+
 
 
 
