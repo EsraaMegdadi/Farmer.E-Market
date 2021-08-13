@@ -68,7 +68,7 @@ namespace Farmer.Infra.Repository
             var p = new DynamicParameters();
             p.Add("ProductName", productsDTO.ProductName, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("CategoryName", productsDTO.CategoryName, dbType: DbType.String, direction: ParameterDirection.Input);
-            IEnumerable<Products> result = DBContext.Connection.Query<Products>("SearchProducts", p, commandType: CommandType.StoredProcedure);
+            IEnumerable<Products> result = DBcontext.Connection.Query<Products>("SearchProducts", p, commandType: CommandType.StoredProcedure);
             return result.ToList();
         }
     }
