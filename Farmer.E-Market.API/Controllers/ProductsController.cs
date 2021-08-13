@@ -1,4 +1,5 @@
 ﻿using Farmer.Core.Data;
+using Farmer.Core.DTO;
 using Farmer.Core.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -45,6 +46,15 @@ namespace Farmer.E_Market.API.Controllers
         public Products Delete(int id)
         {
             return ProductsService.Delete(id);
+        }
+
+        [HttpPost]
+        [Route("SearchProducts")]
+        [ProducesResponseType(typeof(List<Products>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public List<Products> Search([FromBody] ProductsDTO productsDTO)
+        {
+            return ProductsService.Search(productsDTO);
         }
     }
 }

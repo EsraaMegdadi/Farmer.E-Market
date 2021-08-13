@@ -1,4 +1,5 @@
 ﻿using Farmer.Core.Data;
+using Farmer.Core.DTO;
 using Farmer.Core.Repository;
 using Farmer.Core.Service;
 using System;
@@ -33,6 +34,11 @@ namespace Farmer.Infra.Service
         {
             productsRepository.Delete(id);
             return new Products();
+        }
+
+        public List<Products> Search(ProductsDTO productsDTO)
+        {
+            return productsRepository.Search(productsDTO);
         }
     }
 }
