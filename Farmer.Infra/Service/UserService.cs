@@ -1,9 +1,11 @@
 ﻿using Farmer.Core;
+using Farmer.Core.DTO;
 using Farmer.Core.Repository;
 using Farmer.Core.Service;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Farmer.Infra.Service
 {
@@ -36,6 +38,10 @@ namespace Farmer.Infra.Service
         {
             UserRepository.Delete(id);
             return new Users();
+        }
+        public async Task<bool> CheckUserValidity(UsersLoginDTO customer)
+        {
+            return await UserRepository.CheckUserValidity(customer);
         }
     }
 }

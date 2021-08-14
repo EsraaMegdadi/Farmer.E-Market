@@ -1,12 +1,14 @@
 ﻿using Dapper;
 using Farmer.Core;
 using Farmer.Core.Common;
+using Farmer.Core.DTO;
 using Farmer.Core.Repository;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Farmer.Infra.Repository
 {
@@ -61,6 +63,17 @@ namespace Farmer.Infra.Repository
             return 1;
 
         }
+        public async Task<bool> CheckUserValidity(UsersLoginDTO customer)
+        {
+            var p = new DynamicParameters();
+
+            p.Add("@UserName", customer.UserName, dbType: DbType.String, direction: ParameterDirection.Input);
+            p.Add("@Password", customer.Password, dbType: DbType.String, direction: ParameterDirection.Input);
+
+            var result = await DBContext.Connection.QueryAsync<Boolean>("usp_Customer_CheckValidity", p, commandType: CommandType.StoredProcedure);
+            return result.FirstOrDefault();
+        }
+
 
         //public List<Course> Search(CourseDTO courseDTO)
         //{

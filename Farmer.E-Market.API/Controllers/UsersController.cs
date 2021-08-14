@@ -1,4 +1,5 @@
 ﻿using Farmer.Core;
+using Farmer.Core.DTO;
 using Farmer.Core.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -51,6 +52,21 @@ namespace Farmer.E_Market.API.Controllers
         public Users Delete(int id)
         {
             return UserService.Delete(id);
+        }
+        //[HttpGet]
+        //[Route("GetAllCategoryProduct")]
+        //[ProducesResponseType(typeof(List<Category>), StatusCodes.Status200OK)]
+        //public async Task<List<Category>> GetAllCategoryProducts()
+        //{
+        //    return await CategoryService.GetAllCategoryProducts();
+        //}
+
+        [HttpGet]
+        [Route("Login")]
+        [ProducesResponseType(typeof(List<Users>), StatusCodes.Status200OK)]
+        public async Task<bool> CheckUserValidity(UsersLoginDTO customer)
+        {
+            return await UserService.CheckUserValidity(customer);
         }
 
     }

@@ -49,7 +49,8 @@ namespace Farmer.E_Market.API.Controllers
         }
 
         [HttpPost]
-        [Route("SearchProducts")]
+        [Route("ProductSearch")]
+        [HttpPost]
         [ProducesResponseType(typeof(List<Products>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public List<Products> Search([FromBody] ProductsDTO productsDTO)

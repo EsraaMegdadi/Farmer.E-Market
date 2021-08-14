@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Farmer.Core.DTO;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Farmer.Core.Repository
 {
@@ -11,5 +13,6 @@ namespace Farmer.Core.Repository
         int Update(Users Data);
 
         int Delete(int id);
+        Task<bool> CheckUserValidity(UsersLoginDTO customer);
     }
 }
