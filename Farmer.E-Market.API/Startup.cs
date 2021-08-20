@@ -34,6 +34,21 @@ namespace Farmer.E_Market.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(corsOptions =>
+            {
+                corsOptions.AddPolicy("x",
+                builder =>
+                {
+                    //builder.WithOrigins("http://127.0.0.1:4200", "http://localhost:4200", "https://localhost:4200")
+                    // .AllowAnyHeader()
+                    // .AllowAnyMethod();
+
+                    builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+                });
+            });
+
+
+
             services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -77,6 +92,7 @@ namespace Farmer.E_Market.API
             services.AddScoped<IHomePageRepository, HomePageRepository>();
             services.AddScoped<IHomePageService, HomePageService>();
             services.AddControllers();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -89,10 +105,15 @@ namespace Farmer.E_Market.API
 
             app.UseHttpsRedirection();
 
+            app.UseCors("x");
+            app.UseStaticFiles();
+
+
             app.UseRouting();
 
             app.UseAuthorization();
-            app.UseAuthentication();
+
+           // app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {

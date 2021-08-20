@@ -28,6 +28,7 @@ namespace Farmer.E_Market.API.Controllers
         }
 
         [HttpPost]
+        [Route("register")]
         [ProducesResponseType(typeof(Users), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
