@@ -47,8 +47,6 @@ namespace Farmer.E_Market.API
                 });
             });
 
-
-
             services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -56,13 +54,14 @@ namespace Farmer.E_Market.API
             }).AddJwtBearer(y =>
             {
                 y.RequireHttpsMetadata = false;
-                y.SaveToken = true;
+                y.SaveToken = true;//hours 
                 y.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("[SECRET USED TO SIGN AND VERIFY JWT TOKENS, IT CAN BE ANY STRING]")),
                     ValidateIssuer = false,
                     ValidateAudience = false
+
                 };
             });
             services.AddScoped<IDBContext, DBContext>();
@@ -93,6 +92,10 @@ namespace Farmer.E_Market.API
             services.AddScoped<IHomePageService, HomePageService>();
             services.AddScoped<IContactUsRepository, ContactUsRepository>();
             services.AddScoped<IContactUsService, ContactUsService>();
+            services.AddScoped<IJwtservice, Jwtservice>();
+            services.AddScoped<Ijwtrepo, JwtRepo>();
+
+
 
             services.AddControllers();
             
@@ -116,7 +119,7 @@ namespace Farmer.E_Market.API
 
             app.UseAuthorization();
 
-           // app.UseAuthentication();
+            //app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {
