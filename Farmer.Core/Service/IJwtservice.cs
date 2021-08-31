@@ -8,6 +8,5 @@ namespace Farmer.Core.Service
    public interface IJwtservice
     {
         string Authencate(login login);
-
     }
 }
