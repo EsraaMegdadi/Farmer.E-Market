@@ -91,6 +91,9 @@ namespace Farmer.E_Market.API
             services.AddScoped<IUserTransactionService, UserTransactionService>();
             services.AddScoped<IHomePageRepository, HomePageRepository>();
             services.AddScoped<IHomePageService, HomePageService>();
+            services.AddScoped<IContactUsRepository, ContactUsRepository>();
+            services.AddScoped<IContactUsService, ContactUsService>();
+
             services.AddControllers();
             
         }
