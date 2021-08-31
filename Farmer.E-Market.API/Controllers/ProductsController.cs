@@ -1,10 +1,12 @@
-﻿using Farmer.Core.Data;
+﻿using Elmah.ContentSyndication;
+using Farmer.Core.Data;
 using Farmer.Core.DTO;
 using Farmer.Core.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -33,7 +35,10 @@ namespace Farmer.E_Market.API.Controllers
         public Products Create([FromBody] Products products)
         {
             return ProductsService.Create(products);
+
         }
+
+
         [HttpPut]
         [ProducesResponseType(typeof(Products), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -57,5 +62,33 @@ namespace Farmer.E_Market.API.Controllers
         {
             return ProductsService.Search(productsDTO);
         }
+        //[HttpPost]
+        //[Route("upload")]
+        //public Item Upload()
+        //{
+        //    try
+        //    {
+        //        var file = Request.Form.Files[0];
+        //        byte[] fileContent;
+        //        using (var ms = new MemoryStream())
+        //        {
+        //            file.CopyTo(ms); fileContent = ms.ToArray();
+        //        }
+        //        var fileName = Path.GetFileNameWithoutExtension(file.FileName);
+        //        string attachmentFileName = $"{Guid.NewGuid().ToString("N")}_{fileName}.{Path.GetExtension(file.FileName).Replace(".", "")}";
+        //        var fullPath = Path.Combine("C:\\Users\\AMCT\\OneDrive\\Desktop\\Faster Resturant\\fasterResturant\\src\\assets\\" + "images\\Uploaded File", attachmentFileName);
+        //        using (var stream = new FileStream(fullPath, FileMode.Create))
+        //        {
+        //            file.CopyTo(stream);
+        //        }
+        //        Item item = new Item();
+        //        item.Image = attachmentFileName;
+        //        return item;
+        //    }
+
+
+
     }
-}
+
+    }
+
