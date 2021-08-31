@@ -92,10 +92,6 @@ namespace Farmer.E_Market.API
             services.AddScoped<IHomePageService, HomePageService>();
             services.AddScoped<IContactUsRepository, ContactUsRepository>();
             services.AddScoped<IContactUsService, ContactUsService>();
-            services.AddScoped<IJwtservice, Jwtservice>();
-            services.AddScoped<Ijwtrepo, JwtRepo>();
-
-
 
             services.AddControllers();
             
