@@ -8,6 +8,7 @@ namespace Farmer.Core.Repository
   public  interface IContactUsRepository
     {
         List<ContactUs> GetAll();
+        ContactUs Getbyid(int ContactUsId);
         int Create(ContactUs Data);
         int Update(ContactUs Data);
         int Delete(int id);

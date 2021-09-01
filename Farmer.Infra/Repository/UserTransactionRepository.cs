@@ -19,8 +19,16 @@ namespace Farmer.Infra.Repository
         }
         public List<UserTransaction> GetAll()
         {
-            IEnumerable<UserTransaction> result = DBcontext.Connection.Query<UserTransaction>("GetAllUserTransaction", commandType: CommandType.StoredProcedure);
+            IEnumerable<UserTransaction> result = DBcontext.connection.Query<UserTransaction>("GetAllUserTransaction", commandType: CommandType.StoredProcedure);
             return result.ToList();
+        }
+
+        public UserTransaction Getbyid(int TransactionsId)
+        {
+            var P = new DynamicParameters();
+            P.Add("TransactionsId", TransactionsId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = DBcontext.connection.Query<UserTransaction>("GetByIdTransactions", P, commandType: CommandType.StoredProcedure);
+            return result.SingleOrDefault();
         }
         public int Create(UserTransaction Data)
         {
@@ -32,7 +40,7 @@ namespace Farmer.Infra.Repository
             par.Add("@TransactionDate", Data.TransactionDate, dbType: DbType.DateTime, direction: ParameterDirection.Input);
 
 
-            var Result = DBcontext.Connection.ExecuteAsync("CreateUserTransaction", par, commandType: CommandType.StoredProcedure);
+            var Result = DBcontext.connection.ExecuteAsync("CreateUserTransaction", par, commandType: CommandType.StoredProcedure);
             return 1;
         }
         public int Update(UserTransaction Data)
@@ -44,14 +52,14 @@ namespace Farmer.Infra.Repository
             par.Add("@Amount", Data.Amount, dbType: DbType.Double, direction: ParameterDirection.Input);
             par.Add("@TransactionDate", Data.TransactionDate, dbType: DbType.DateTime, direction: ParameterDirection.Input);
 
-            var Result = DBcontext.Connection.ExecuteAsync("UpdateUserTransaction", par, commandType: CommandType.StoredProcedure);
+            var Result = DBcontext.connection.ExecuteAsync("UpdateUserTransaction", par, commandType: CommandType.StoredProcedure);
             return 1;
         }
         public int Delete(int Id)
         {
             var Par = new DynamicParameters();
             Par.Add("@TransactionsId", Id, DbType.Int32, direction: ParameterDirection.Input);
-            var Result = DBcontext.Connection.ExecuteAsync("DeleteUserTransaction", Par, commandType: CommandType.StoredProcedure);
+            var Result = DBcontext.connection.ExecuteAsync("DeleteUserTransaction", Par, commandType: CommandType.StoredProcedure);
             return 1;
         }
     }

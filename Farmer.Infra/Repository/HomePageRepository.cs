@@ -20,9 +20,16 @@ namespace Farmer.Infra.Repository
         }
         public List<HomePage> GetAll()
         {
-            IEnumerable<HomePage> result = DBContext.Connection.Query<HomePage>("GetAllHomePage", commandType: CommandType.StoredProcedure);
+            IEnumerable<HomePage> result = DBContext.connection.Query<HomePage>("GetAllHomePage", commandType: CommandType.StoredProcedure);
             return result.ToList();
 
+        }
+        public HomePage Getbyid(int HomePageId)
+        {
+            var P = new DynamicParameters();
+            P.Add("HomePageId", HomePageId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = DBContext.connection.Query<HomePage>("GetByIdHomePage", P, commandType: CommandType.StoredProcedure);
+            return result.SingleOrDefault();
         }
 
         public int Create(HomePage Data)
@@ -35,7 +42,7 @@ namespace Farmer.Infra.Repository
             p.Add("ReviewId", Data.ReviewId, dbType: DbType.Int32, direction: ParameterDirection.Input);
             
 
-            var result = DBContext.Connection.ExecuteAsync("CreateHomePage", p, commandType: CommandType.StoredProcedure);
+            var result = DBContext.connection.ExecuteAsync("CreateHomePage", p, commandType: CommandType.StoredProcedure);
             return 1;
 
         }
@@ -53,14 +60,14 @@ namespace Farmer.Infra.Repository
             p.Add("TestimonialId", Data.TestimonialId, dbType: DbType.Int32, direction: ParameterDirection.Input);
             p.Add("ReviewId", Data.ReviewId, dbType: DbType.Int32, direction: ParameterDirection.Input);
 
-            var result = DBContext.Connection.ExecuteAsync("UpdateHomePage", p, commandType: CommandType.StoredProcedure);
+            var result = DBContext.connection.ExecuteAsync("UpdateHomePage", p, commandType: CommandType.StoredProcedure);
             return 1;
         }
         public int Delete(int id)
         {
             var p = new DynamicParameters();
             p.Add("@HomePageId", id , dbType: DbType.Int32, direction: ParameterDirection.Input);
-            var result = DBContext.Connection.ExecuteAsync("DeleteHomePage", p, commandType: CommandType.StoredProcedure);
+            var result = DBContext.connection.ExecuteAsync("DeleteHomePage", p, commandType: CommandType.StoredProcedure);
             return 1;
 
         }

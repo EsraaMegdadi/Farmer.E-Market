@@ -19,6 +19,12 @@ namespace Farmer.Infra.Service
         {
             return reviewRepository.GetAll();
         }
+
+        public Review getbyid(int ReviewID)
+        {
+            reviewRepository.Getbyid(ReviewID);
+            return new Review();
+        }
         public Review Create(Review review)
         {
             reviewRepository.Create(review);

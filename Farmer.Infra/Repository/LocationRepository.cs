@@ -21,10 +21,16 @@ namespace Farmer.Infra.Repository
 
         public List<Location> GetAll()
         {
-            IEnumerable<Location> result = DBContext.Connection.Query<Location>("GetAllLocation", commandType: CommandType.StoredProcedure);
+            IEnumerable<Location> result = DBContext.connection.Query<Location>("GetAllLocation", commandType: CommandType.StoredProcedure);
             return result.ToList();
         }
-
+        public Location Getbyid(int LocationId)
+        {
+            var P = new DynamicParameters();
+            P.Add("LocationId", LocationId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = DBContext.connection.Query<Location>("GetByIdLocation", P, commandType: CommandType.StoredProcedure);
+            return result.SingleOrDefault();
+        }
         public int Create(Location Data)
         {
             var p = new DynamicParameters();
@@ -33,7 +39,7 @@ namespace Farmer.Infra.Repository
             p.Add("Street", Data.Street, dbType: DbType.String, direction: ParameterDirection.Input);
            
 
-            var result = DBContext.Connection.ExecuteAsync("CreateLocation", p, commandType: CommandType.StoredProcedure);
+            var result = DBContext.connection.ExecuteAsync("CreateLocation", p, commandType: CommandType.StoredProcedure);
             return 1;
         }
         public int Update(Location Data)
@@ -46,14 +52,14 @@ namespace Farmer.Infra.Repository
             p.Add("Street", Data.Street, dbType: DbType.String, direction: ParameterDirection.Input);
           
            
-            var result = DBContext.Connection.ExecuteAsync("UpdateLocation", p, commandType: CommandType.StoredProcedure);
+            var result = DBContext.connection.ExecuteAsync("UpdateLocation", p, commandType: CommandType.StoredProcedure);
             return 1;
         }
         public int Delete(int id)
         {
             var p = new DynamicParameters();
             p.Add("@LocationId", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            var result = DBContext.Connection.ExecuteAsync("DeleteLocation", p, commandType: CommandType.StoredProcedure);
+            var result = DBContext.connection.ExecuteAsync("DeleteLocation", p, commandType: CommandType.StoredProcedure);
             return 1;
 
         }

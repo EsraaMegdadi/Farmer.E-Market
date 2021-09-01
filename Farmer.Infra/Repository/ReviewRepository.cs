@@ -19,8 +19,16 @@ namespace Farmer.Infra.Repository
         }
         public List<Review> GetAll()
         {
-            IEnumerable<Review> result = DBcontext.Connection.Query<Review>("GetAllReview", commandType: CommandType.StoredProcedure);
+            IEnumerable<Review> result = DBcontext.connection.Query<Review>("GetAllReview", commandType: CommandType.StoredProcedure);
             return result.ToList();
+        }
+
+        public Review Getbyid(int ReviewID)
+        {
+            var P = new DynamicParameters();
+            P.Add("ReviewID", ReviewID, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = DBcontext.connection.Query<Review>("GetByIdReview", P, commandType: CommandType.StoredProcedure);
+            return result.SingleOrDefault();
         }
         public int Create(Review Data)
         {
@@ -29,7 +37,7 @@ namespace Farmer.Infra.Repository
             p.Add("@Descriptiontext", Data.Descriptiontext, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("@img", Data.img, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("@Rate", Data.Rate, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            var Result = DBcontext.Connection.ExecuteAsync("CreateReview", p, commandType: CommandType.StoredProcedure);
+            var Result = DBcontext.connection.ExecuteAsync("CreateReview", p, commandType: CommandType.StoredProcedure);
             return 1;
         }
         public int Update(Review Data)
@@ -41,7 +49,7 @@ namespace Farmer.Infra.Repository
             p.Add("@img", Data.img, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("@Rate", Data.Rate, dbType: DbType.Int32, direction: ParameterDirection.Input);
 
-            var Result = DBcontext.Connection.ExecuteAsync("UpdateReview", p, commandType: CommandType.StoredProcedure);
+            var Result = DBcontext.connection.ExecuteAsync("UpdateReview", p, commandType: CommandType.StoredProcedure);
             return 1;
         }
         public int Delete(int Id)
@@ -49,7 +57,7 @@ namespace Farmer.Infra.Repository
             var P = new DynamicParameters();
             P.Add("@ReviewID", Id, DbType.Int32, direction: ParameterDirection.Input);
 
-            var Result = DBcontext.Connection.ExecuteAsync("DeleteReview", P, commandType: CommandType.StoredProcedure);
+            var Result = DBcontext.connection.ExecuteAsync("DeleteReview", P, commandType: CommandType.StoredProcedure);
             return 1;
         }
 

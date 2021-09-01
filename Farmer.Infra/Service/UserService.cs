@@ -21,6 +21,11 @@ namespace Farmer.Infra.Service
         {
             return UserRepository.GetAll();
         }
+        public Users getbyid(int UserID)
+        {
+            UserRepository.Getbyid(UserID);
+            return new Users();
+        }
 
         public Users Create(Users users)
         {

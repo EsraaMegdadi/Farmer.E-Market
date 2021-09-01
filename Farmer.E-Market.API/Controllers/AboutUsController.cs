@@ -24,6 +24,15 @@ namespace Farmer.E_Market.API.Controllers
         {
             return AboutUsService.GetAll();
         }
+
+        [Route("{AboutUsId}")]
+        [HttpGet]
+        public AboutUs getbyid(int AboutUsId)
+        {
+
+            return AboutUsService.getbyid(AboutUsId);
+              
+        }
         [HttpPost]
         [ProducesResponseType(typeof(AboutUs), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

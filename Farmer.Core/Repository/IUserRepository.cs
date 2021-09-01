@@ -9,6 +9,7 @@ namespace Farmer.Core.Repository
    public interface IUserRepository
     {
         List<Users> GetAll();
+        Users Getbyid(int UserID);
        int Create(Users Data);
         int Update(Users Data);
 

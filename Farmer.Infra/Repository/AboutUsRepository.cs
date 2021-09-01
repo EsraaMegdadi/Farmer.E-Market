@@ -21,15 +21,22 @@ namespace Farmer.Infra.Repository
 
         public List<AboutUs> GetAll()
         {
-            IEnumerable<AboutUs> result = DBContext.Connection.Query<AboutUs>("GetAllAboutUs", commandType: CommandType.StoredProcedure);
+            IEnumerable<AboutUs> result = DBContext.connection.Query<AboutUs>("GetAllAboutUs", commandType: CommandType.StoredProcedure);
             return result.ToList();
         }
 
+        public AboutUs Getbyid(int AboutUsId)
+        {
+            var P = new DynamicParameters();
+            P.Add("AboutUsId", AboutUsId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = DBContext.connection.Query<AboutUs>("GetByIdAboutUs", P, commandType: CommandType.StoredProcedure);
+            return result.SingleOrDefault();
+        }
         public int Create(AboutUs Data)
         {
             var p = new DynamicParameters();
             p.Add("Description", Data.Description, dbType: DbType.String, direction: ParameterDirection.Input);
-            var result = DBContext.Connection.ExecuteAsync("CreateAboutUs", p, commandType: CommandType.StoredProcedure);
+            var result = DBContext.connection.ExecuteAsync("CreateAboutUs", p, commandType: CommandType.StoredProcedure);
 
             return 1;
         }
@@ -38,7 +45,7 @@ namespace Farmer.Infra.Repository
             var p = new DynamicParameters();
             p.Add("AboutUsId", Data.AboutUsId, dbType: DbType.Int32, direction: ParameterDirection.Input);
             p.Add("Description", Data.Description, dbType: DbType.String, direction: ParameterDirection.Input);
-            var result = DBContext.Connection.ExecuteAsync("UpdateAboutUs", p, commandType: CommandType.StoredProcedure);
+            var result = DBContext.connection.ExecuteAsync("UpdateAboutUs", p, commandType: CommandType.StoredProcedure);
 
             return 1;
         }
@@ -46,7 +53,7 @@ namespace Farmer.Infra.Repository
         {
             var p = new DynamicParameters();
             p.Add("AboutUsId", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            var result = DBContext.Connection.ExecuteAsync("DeleteAboutUs", p, commandType: CommandType.StoredProcedure);
+            var result = DBContext.connection.ExecuteAsync("DeleteAboutUs", p, commandType: CommandType.StoredProcedure);
 
             return 1;
         }

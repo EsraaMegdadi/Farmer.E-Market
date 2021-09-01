@@ -19,7 +19,11 @@ namespace Farmer.Infra.Service
         {
             return CartRepository.GetAll();
         }
-
+        public Cart getbyid(int CartId)
+        {
+           CartRepository.Getbyid(CartId);
+            return new Cart();
+        }
         public Cart Create(Cart cart)
         {
             CartRepository.Create(cart);

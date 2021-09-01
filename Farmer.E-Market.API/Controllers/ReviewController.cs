@@ -25,6 +25,16 @@ namespace Farmer.E_Market.API.Controllers
         {
             return ReviewService.GetAll();
         }
+
+        [Route("{ReviewID}")]
+        [HttpGet]
+        public Review getbyid(int ReviewID)
+        {
+            return ReviewService.getbyid(ReviewID);
+        }
+
+
+
         [HttpPost]
         [ProducesResponseType(typeof(List<Category>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

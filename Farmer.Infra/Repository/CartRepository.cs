@@ -2,6 +2,7 @@
 using Farmer.Core.Common;
 using Farmer.Core.Data;
 using Farmer.Core.Repository;
+using Farmer.Infra.Common;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -19,9 +20,18 @@ namespace Farmer.Infra.Repository
         }
         public List<Cart> GetAll()
         {
-            IEnumerable<Cart> result = DBcontext.Connection.Query<Cart>("GetAllCarts", commandType: CommandType.StoredProcedure);
+            IEnumerable<Cart> result = DBcontext.connection.Query<Cart>("GetAllCarts", commandType: CommandType.StoredProcedure);
             return result.ToList();
         }
+
+        public Cart Getbyid(int CartId)
+        {
+            var P = new DynamicParameters();
+            P.Add("CartId", CartId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = DBcontext.connection.Query<Cart>("GetByIdCart", P, commandType: CommandType.StoredProcedure);
+            return result.SingleOrDefault();
+        }
+
         public int Create(Cart Data)
         {
             var par = new DynamicParameters();
@@ -30,7 +40,7 @@ namespace Farmer.Infra.Repository
             par.Add("@UserId", Data.UserId, dbType: DbType.Int32, direction: ParameterDirection.Input);
             par.Add("@Quantity", Data.Quantity, dbType: DbType.Int32, direction: ParameterDirection.Input);
             par.Add("@Amount", Data.Amount, dbType: DbType.Double, direction: ParameterDirection.Input);
-            var Result = DBcontext.Connection.ExecuteAsync("CreateCarts", par, commandType: CommandType.StoredProcedure);
+            var Result = DBcontext.connection.ExecuteAsync("CreateCarts", par, commandType: CommandType.StoredProcedure);
             return 1;
         }
         public int Update(Cart Data)
@@ -42,14 +52,14 @@ namespace Farmer.Infra.Repository
             par.Add("@Quantity", Data.Quantity, dbType: DbType.Int32, direction: ParameterDirection.Input);
             par.Add("@Amount", Data.Amount, dbType: DbType.Double, direction: ParameterDirection.Input);
 
-            var Result = DBcontext.Connection.ExecuteAsync("UpdateCarts", par, commandType: CommandType.StoredProcedure);
+            var Result = DBcontext.connection.ExecuteAsync("UpdateCarts", par, commandType: CommandType.StoredProcedure);
             return 1;
         }
         public int Delete(int Id)
         {
             var Par = new DynamicParameters();
             Par.Add("@CartId", Id, DbType.Int32, direction: ParameterDirection.Input);
-            var Result = DBcontext.Connection.ExecuteAsync("DeleteCarts", Par, commandType: CommandType.StoredProcedure);
+            var Result = DBcontext.connection.ExecuteAsync("DeleteCarts", Par, commandType: CommandType.StoredProcedure);
             return 1;
         }
     }

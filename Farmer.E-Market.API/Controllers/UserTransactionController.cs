@@ -26,6 +26,16 @@ namespace Farmer.E_Market.API.Controllers
             return UserTransactionService.GetAll();
         }
 
+        [Route("{ TransactionsId}")]
+        [HttpGet]
+        public UserTransaction getbyid(int TransactionsId)
+        {
+            return UserTransactionService.getbyid(TransactionsId);
+        }
+       
+
+
+
         [HttpPost]
         [ProducesResponseType(typeof(UserTransaction), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

@@ -9,6 +9,7 @@ namespace Farmer.Core.Service
     public interface IProductsService
     {
         List<Products> GetAll();
+        Products getbyid(int ProductsID);
         Products Create(Products products);
         Products Update(Products products);
         Products Delete(int id);

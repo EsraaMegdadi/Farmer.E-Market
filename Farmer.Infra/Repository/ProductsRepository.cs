@@ -22,8 +22,16 @@ namespace Farmer.Infra.Repository
         }
         public List<Products> GetAll()
         {
-            IEnumerable<Products> result = DBcontext.Connection.Query<Products>("GetAllProduct", commandType: CommandType.StoredProcedure);
+            IEnumerable<Products> result = DBcontext.connection.Query<Products>("GetAllProduct", commandType: CommandType.StoredProcedure);
             return result.ToList();
+        }
+
+        public Products Getbyid(int ProductID)
+        {
+            var P = new DynamicParameters();
+            P.Add("ProductID", ProductID, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = DBcontext.connection.Query<Products>("GetByIdProduct", P, commandType: CommandType.StoredProcedure);
+            return result.SingleOrDefault();
         }
         public int Create(Products Data)
         {
@@ -36,7 +44,7 @@ namespace Farmer.Infra.Repository
             p.Add("UserID", Data.UserID, dbType: DbType.Int32, direction: ParameterDirection.Input);
 
 
-            var Result = DBcontext.Connection.ExecuteAsync("CreateProduct", p, commandType: CommandType.StoredProcedure);
+            var Result = DBcontext.connection.ExecuteAsync("CreateProduct", p, commandType: CommandType.StoredProcedure);
             return 1;
         }
 
@@ -50,7 +58,7 @@ namespace Farmer.Infra.Repository
             p.Add("ProductQuantity", Data.ProductQuantity, dbType: DbType.Int32, direction: ParameterDirection.Input);
             p.Add("CategoryID", Data.CategoryID, dbType: DbType.Int32, direction: ParameterDirection.Input);
             p.Add("UserID", Data.UserID, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            var Result = DBcontext.Connection.ExecuteAsync("UpdateProduct", p, commandType: CommandType.StoredProcedure);
+            var Result = DBcontext.connection.ExecuteAsync("UpdateProduct", p, commandType: CommandType.StoredProcedure);
             return 1;
         }
 
@@ -59,7 +67,7 @@ namespace Farmer.Infra.Repository
             var P = new DynamicParameters();
             P.Add("ProductID", Id, DbType.Int32, direction: ParameterDirection.Input);
 
-            var Result = DBcontext.Connection.ExecuteAsync("DeleteProduct", P, commandType: CommandType.StoredProcedure);
+            var Result = DBcontext.connection.ExecuteAsync("DeleteProduct", P, commandType: CommandType.StoredProcedure);
             return 1;
         }
 
@@ -68,7 +76,7 @@ namespace Farmer.Infra.Repository
             var p = new DynamicParameters();
             p.Add("ProductName", productsDTO.ProductName, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("CategoryName", productsDTO.CategoryName, dbType: DbType.String, direction: ParameterDirection.Input);
-            IEnumerable<Products> result = DBcontext.Connection.Query<Products>("SearchProducts", p, commandType: CommandType.StoredProcedure);
+            IEnumerable<Products> result = DBcontext.connection.Query<Products>("SearchProducts", p, commandType: CommandType.StoredProcedure);
             return result.ToList();
         }
     }

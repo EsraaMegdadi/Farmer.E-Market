@@ -26,6 +26,16 @@ namespace Farmer.E_Market.API.Controllers
             return CreditCardService.GetAll();
         }
 
+        [Route("{CreditCardId}")]
+        [HttpGet]
+        public CreditCard getbyid(int CreditCardId)
+        {
+            return CreditCardService.getbyid(CreditCardId);
+        }
+
+
+
+
         [HttpPost]
         [ProducesResponseType(typeof(CreditCard), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

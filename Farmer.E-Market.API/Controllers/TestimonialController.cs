@@ -25,6 +25,16 @@ namespace Farmer.E_Market.API.Controllers
         {
             return TestimonialService.GetAll();
         }
+
+
+        [Route("{TestimonialID}")]
+        [HttpGet]
+        public Testimonial getbyid(int TestimonialID)
+        {
+            return TestimonialService.getbyid(TestimonialID);
+        }
+
+
         [HttpPost]
         [ProducesResponseType(typeof(List<Testimonial>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

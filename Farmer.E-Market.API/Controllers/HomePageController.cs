@@ -26,6 +26,17 @@ namespace Farmer.E_Market.API.Controllers
             return HomePageService.GetAll();
         }
 
+        [Route("{HomePageId}")]
+        [HttpGet]
+        public HomePage getbyid(int HomePageId)
+        {
+            return HomePageService.getbyid(HomePageId);
+        }
+
+
+
+
+
         [HttpPost]
         [ProducesResponseType(typeof(HomePage), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

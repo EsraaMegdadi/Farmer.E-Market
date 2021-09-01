@@ -19,8 +19,16 @@ namespace Farmer.Infra.Repository
         }
         public List<ContactInbox> GetAll()
         {
-            IEnumerable<ContactInbox> result = DBcontext.Connection.Query<ContactInbox>("GetAllContactInbox", commandType: CommandType.StoredProcedure);
+            IEnumerable<ContactInbox> result = DBcontext.connection.Query<ContactInbox>("GetAllContactInbox", commandType: CommandType.StoredProcedure);
             return result.ToList();
+        }
+
+        public ContactInbox Getbyid(int InboxId)
+        {
+            var P = new DynamicParameters();
+            P.Add("InboxId",InboxId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = DBcontext.connection.Query<ContactInbox>("GetByIdContactInbox", P, commandType: CommandType.StoredProcedure);
+            return result.SingleOrDefault();
         }
         public int Create(ContactInbox Data)
         {
@@ -30,7 +38,7 @@ namespace Farmer.Infra.Repository
             par.Add("@Email", Data.Email, dbType: DbType.String, direction: ParameterDirection.Input);
             par.Add("@Message", Data.Message, dbType: DbType.String, direction: ParameterDirection.Input);
             
-            var Result = DBcontext.Connection.ExecuteAsync("CreateContactInbox", par, commandType: CommandType.StoredProcedure);
+            var Result = DBcontext.connection.ExecuteAsync("CreateContactInbox", par, commandType: CommandType.StoredProcedure);
             return 1;
         }
         public int Update(ContactInbox Data)
@@ -41,14 +49,14 @@ namespace Farmer.Infra.Repository
             par.Add("@Email", Data.Email, dbType: DbType.String, direction: ParameterDirection.Input);
             par.Add("@Message", Data.Message, dbType: DbType.String, direction: ParameterDirection.Input);
 
-            var Result = DBcontext.Connection.ExecuteAsync("UpdateContactInbox", par, commandType: CommandType.StoredProcedure);
+            var Result = DBcontext.connection.ExecuteAsync("UpdateContactInbox", par, commandType: CommandType.StoredProcedure);
             return 1;
         }
         public int Delete(int Id)
         {
             var Par = new DynamicParameters();
             Par.Add("@InboxId", Id, DbType.Int32, direction: ParameterDirection.Input);
-            var Result = DBcontext.Connection.ExecuteAsync("DeleteContactInbox", Par, commandType: CommandType.StoredProcedure);
+            var Result = DBcontext.connection.ExecuteAsync("DeleteContactInbox", Par, commandType: CommandType.StoredProcedure);
             return 1;
         }
 

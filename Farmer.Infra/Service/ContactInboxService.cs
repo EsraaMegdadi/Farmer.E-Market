@@ -19,7 +19,11 @@ namespace Farmer.Infra.Service
         {
             return ContactInboxRepository.GetAll();
         }
-
+        public ContactInbox getbyid(int InboxId)
+        {
+            ContactInboxRepository.Getbyid(InboxId);
+            return new ContactInbox();
+        }
         public ContactInbox Create(ContactInbox contactInbox)
         {
             ContactInboxRepository.Create(contactInbox);

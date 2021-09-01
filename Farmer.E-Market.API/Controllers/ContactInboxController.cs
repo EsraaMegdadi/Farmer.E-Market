@@ -27,6 +27,15 @@ namespace Farmer.E_Market.API.Controllers
             return ContactInboxService.GetAll();
         }
 
+        [Route("{InboxId}")]
+        [HttpGet]
+        public ContactInbox getbyid(int InboxId)
+        {
+            return ContactInboxService.getbyid(InboxId);
+        }
+
+
+
         [HttpPost]
         [ProducesResponseType(typeof(ContactInbox), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

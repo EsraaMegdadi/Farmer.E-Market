@@ -26,6 +26,13 @@ namespace Farmer.E_Market.API.Controllers
             return CartService.GetAll();
         }
 
+        [Route("{CartId}")]
+        [HttpGet]
+        public Cart getbyid(int CartId)
+        {
+            return CartService.getbyid(CartId);
+        }
+
         [HttpPost]
         [ProducesResponseType(typeof(Cart), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

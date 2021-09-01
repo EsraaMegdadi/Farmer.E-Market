@@ -19,6 +19,11 @@ namespace Farmer.Infra.Service
         {
             return testimonialRepository.GetAll();
         }
+        public Testimonial getbyid(int TestimonialID)
+        {
+            testimonialRepository.Getbyid(TestimonialID);
+            return new Testimonial();
+        }
         public Testimonial Create(Testimonial testimonial)
         {
             testimonialRepository.Create(testimonial);
