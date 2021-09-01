@@ -40,10 +40,10 @@ namespace Farmer.Infra.Repository
             p.Add("UserName", Data.UserName, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("Email", Data.Email, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("Password", Data.Email, dbType: DbType.String, direction: ParameterDirection.Input);
-            p.Add("Gender", Data.Gender, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("Age", Data.Age, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            p.Add("LocationId", Data.LocationId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("Address", Data.Address, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("RoleId", Data.RoleId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("phoneNumber", Data.phoneNumber, dbType: DbType.String, direction: ParameterDirection.Input);
 
             var result = DBContext.connection.ExecuteAsync("CreateUser", p, commandType: CommandType.StoredProcedure);
             return 1;
@@ -55,8 +55,8 @@ namespace Farmer.Infra.Repository
             p.Add("UserName", Data.UserName, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("Email", Data.Email, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("Password", Data.Password, dbType: DbType.String, direction: ParameterDirection.Input);
-            p.Add("Gender", Data.Gender, dbType: DbType.String, direction: ParameterDirection.Input);
-            p.Add("LocationId", Data.LocationId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            //p.Add("Gender", Data.Gender, dbType: DbType.String, direction: ParameterDirection.Input);
+            p.Add("Address", Data.Address, dbType: DbType.Int32, direction: ParameterDirection.Input);
             p.Add("Age", Data.Age, dbType: DbType.Int32, direction: ParameterDirection.Input);
             p.Add("RoleId", Data.RoleId, dbType: DbType.Int32, direction: ParameterDirection.Input);
             var result = DBContext.connection.ExecuteAsync("UpdateUsers", p, commandType: CommandType.StoredProcedure);

@@ -12,15 +12,15 @@ namespace Farmer.Infra.Service
 {
    public class Jwtservice : IJwtservice
     {
-        private readonly Ijwtrepo ijwtrepo;
-        public Jwtservice(Ijwtrepo ijwtrepo)
+        private readonly Ijwtrepo JwtRepo;
+        public Jwtservice(Ijwtrepo jwtRepo)
         {
-            this.ijwtrepo = ijwtrepo;
+            JwtRepo = jwtRepo;
 
         }
         public string Authencate(login login)
         {
-            var acc = ijwtrepo.login1(login);
+            var acc = JwtRepo.login1(login);
 
             if (acc == null)
             {

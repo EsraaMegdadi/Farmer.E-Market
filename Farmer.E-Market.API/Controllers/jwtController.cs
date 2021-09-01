@@ -13,10 +13,10 @@ namespace Farmer.E_Market.API.Controllers
     [ApiController]
     public class jwtController : Controller
     {
-        private readonly IJwtservice jwtservice;
+        private readonly IJwtservice Jwtservice;
         public jwtController(IJwtservice jwtservice)
         {
-            this.jwtservice = jwtservice;
+            Jwtservice = jwtservice;
         }
 
 
@@ -24,7 +24,7 @@ namespace Farmer.E_Market.API.Controllers
         [HttpPost]
         public IActionResult auth([FromBody] login login)
         {
-            var token = jwtservice.Authencate(login);
+            var token = Jwtservice.Authencate(login);
             if (token == null)
             {
                 return Unauthorized();

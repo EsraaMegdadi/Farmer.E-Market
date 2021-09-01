@@ -12,15 +12,15 @@ namespace Farmer.Core
         [Key]
         public int UserID { get; set; }
         public string UserName { get; set; }
-        public int phoneNumber { get; set; }
+        public string phoneNumber { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public string Gender { get; set; }
+        public string Address { get; set; }
         public int Age { get; set; }
 
-        [ForeignKey("LocationId")]
-        public int LocationId { get; set; }
-        public virtual Location location { get; set; }
+        //[ForeignKey("LocationId")]
+        //public int LocationId { get; set; }
+        //public virtual Location location { get; set; }
         [ForeignKey("RoleId")]
         public int RoleId { get; set; }
         public virtual Role role { get; set; }
