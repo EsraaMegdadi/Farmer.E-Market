@@ -28,6 +28,22 @@ namespace Farmer.E_Market.API.Controllers
             return LocationService.GetAll();
         }
 
+        [Route("{LocationId}")]
+        [HttpGet]
+        public Location getbyid(int LocationId)
+        {
+            return LocationService.getbyid(LocationId);
+        }
+
+
+
+
+
+
+
+
+
+
         [HttpPost]
         [ProducesResponseType(typeof(Location), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

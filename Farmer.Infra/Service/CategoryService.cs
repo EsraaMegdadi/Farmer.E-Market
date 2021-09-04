@@ -20,6 +20,11 @@ namespace Farmer.Infra.Service
         {
             return categoryRepository.GetAll();
         }
+        public Category getbyid(int CategoryId)
+        {
+            categoryRepository.Getbyid(CategoryId);
+            return new Category();
+        }
         public Category Create(Category category)
         {
             categoryRepository.Create(category);

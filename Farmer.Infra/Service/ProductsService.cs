@@ -20,6 +20,12 @@ namespace Farmer.Infra.Service
         {
             return productsRepository.GetAll();
         }
+
+        public Products getbyid(int ProductsID)
+        {
+            productsRepository.Getbyid(ProductsID);
+            return new Products();
+        }
         public Products Create(Products products)
         {
             productsRepository.Create(products);

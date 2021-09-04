@@ -19,6 +19,11 @@ namespace Farmer.Infra.Service
         {
             return LocationRepository.GetAll();
         }
+        public Location getbyid(int LocationId)
+        {
+            LocationRepository.Getbyid(LocationId);
+            return new Location();
+        }
 
         public Location Create(Location location)
         {

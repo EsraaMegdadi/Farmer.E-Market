@@ -19,8 +19,15 @@ namespace Farmer.Infra.Repository
         }
         public List<Invoice> GetAll()
         {
-            IEnumerable<Invoice> result = DBcontext.Connection.Query<Invoice>("GetAllInvoice", commandType: CommandType.StoredProcedure);
+            IEnumerable<Invoice> result = DBcontext.connection.Query<Invoice>("GetAllInvoice", commandType: CommandType.StoredProcedure);
             return result.ToList();
+        }
+        public Invoice Getbyid(int InvoiceId)
+        {
+            var P = new DynamicParameters();
+            P.Add("InvoiceId", InvoiceId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = DBcontext.connection.Query<Invoice>("GetByIdInvoice", P, commandType: CommandType.StoredProcedure);
+            return result.SingleOrDefault();
         }
         public int Create(Invoice Data)
         {
@@ -31,7 +38,7 @@ namespace Farmer.Infra.Repository
             par.Add("@UserId", Data.UserId, dbType: DbType.Int32, direction: ParameterDirection.Input);
             par.Add("@TotalInvoice", Data.TotalInvoice, dbType: DbType.Double, direction: ParameterDirection.Input);
 
-            var Result = DBcontext.Connection.ExecuteAsync("CreateInvoice", par, commandType: CommandType.StoredProcedure);
+            var Result = DBcontext.connection.ExecuteAsync("CreateInvoice", par, commandType: CommandType.StoredProcedure);
             return 1;
         }
         public int Update(Invoice Data)
@@ -43,14 +50,14 @@ namespace Farmer.Infra.Repository
             par.Add("@UserId", Data.UserId, dbType: DbType.Int32, direction: ParameterDirection.Input);
             par.Add("@TotalInvoice", Data.TotalInvoice, dbType: DbType.Double, direction: ParameterDirection.Input);
 
-            var Result = DBcontext.Connection.ExecuteAsync("UpdateInvoice", par, commandType: CommandType.StoredProcedure);
+            var Result = DBcontext.connection.ExecuteAsync("UpdateInvoice", par, commandType: CommandType.StoredProcedure);
             return 1;
         }
         public int Delete(int Id)
         {
             var Par = new DynamicParameters();
             Par.Add("@InvoiceId", Id, DbType.Int32, direction: ParameterDirection.Input);
-            var Result = DBcontext.Connection.ExecuteAsync("DeleteInvoice", Par, commandType: CommandType.StoredProcedure);
+            var Result = DBcontext.connection.ExecuteAsync("DeleteInvoice", Par, commandType: CommandType.StoredProcedure);
             return 1;
         }
     }

@@ -20,6 +20,11 @@ namespace Farmer.Infra.Service
             return CreditCardRepository.GetAll();
         }
 
+        public CreditCard getbyid(int CreditCardId)
+        {
+            CreditCardRepository.Getbyid(CreditCardId);
+            return new CreditCard();
+        }
         public CreditCard Create(CreditCard creditCard)
         {
             CreditCardRepository.Create(creditCard);

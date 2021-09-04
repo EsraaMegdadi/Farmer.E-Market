@@ -26,7 +26,7 @@ namespace Farmer.Infra.Repository
             p.Add("@username", login.username, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("@password", login.password, dbType: DbType.String, direction: ParameterDirection.Input);
 
-            IEnumerable<login> result = DBContext.Connection.Query<login>("login1", p, commandType: CommandType.StoredProcedure);
+            IEnumerable<login> result = DBContext.connection.Query<login>("login1", p, commandType: CommandType.StoredProcedure);
 
             return result.SingleOrDefault();
         }

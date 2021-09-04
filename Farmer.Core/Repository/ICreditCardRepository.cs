@@ -8,6 +8,7 @@ namespace Farmer.Core.Repository
     public interface ICreditCardRepository
     {
         List<CreditCard> GetAll();
+        CreditCard Getbyid(int CreditCardId);
         int Create(CreditCard Data);
         int Update(CreditCard Data);
         int Delete(int Id);

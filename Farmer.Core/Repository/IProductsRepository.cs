@@ -9,6 +9,7 @@ namespace Farmer.Core.Repository
    public interface IProductsRepository
     {
         List<Products> GetAll();
+        Products Getbyid(int ProductID);
         int Create(Products Data);
         int Update(Products Data);
         int Delete(int id);

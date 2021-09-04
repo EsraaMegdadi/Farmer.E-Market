@@ -19,8 +19,15 @@ namespace Farmer.Infra.Repository
         }
         public List<Testimonial> GetAll()
         {
-            IEnumerable<Testimonial> result = DBcontext.Connection.Query<Testimonial>("GetAllTestimonial", commandType: CommandType.StoredProcedure);
+            IEnumerable<Testimonial> result = DBcontext.connection.Query<Testimonial>("GetAllTestimonial", commandType: CommandType.StoredProcedure);
             return result.ToList();
+        }
+        public Testimonial Getbyid(int TestimonialID)
+        {
+            var P = new DynamicParameters();
+            P.Add("TestimonialID", TestimonialID, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = DBcontext.connection.Query<Testimonial>("GetByIdTestimonial", P, commandType: CommandType.StoredProcedure);
+            return result.SingleOrDefault();
         }
         public int Create(Testimonial Data)
         {
@@ -29,7 +36,7 @@ namespace Farmer.Infra.Repository
             p.Add("@Descriptiontext", Data.Descriptiontext, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("@img", Data.img, dbType: DbType.String, direction: ParameterDirection.Input);
 
-            var Result = DBcontext.Connection.ExecuteAsync("CreateTestimonial", p, commandType: CommandType.StoredProcedure);
+            var Result = DBcontext.connection.ExecuteAsync("CreateTestimonial", p, commandType: CommandType.StoredProcedure);
             return 1;
         }
         public int Update(Testimonial Data)
@@ -39,7 +46,7 @@ namespace Farmer.Infra.Repository
             p.Add("@UserName", Data.UserName, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("@Descriptiontext", Data.Descriptiontext, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("@img", Data.img, dbType: DbType.String, direction: ParameterDirection.Input);
-            var Result = DBcontext.Connection.ExecuteAsync("UpdateTestimonial", p, commandType: CommandType.StoredProcedure);
+            var Result = DBcontext.connection.ExecuteAsync("UpdateTestimonial", p, commandType: CommandType.StoredProcedure);
             return 1;
         }
         public int Delete(int Id)
@@ -47,7 +54,7 @@ namespace Farmer.Infra.Repository
             var P = new DynamicParameters();
             P.Add("@TestimonialID", Id, DbType.Int32, direction: ParameterDirection.Input);
 
-            var Result = DBcontext.Connection.ExecuteAsync("DeleteTestimonial", P, commandType: CommandType.StoredProcedure);
+            var Result = DBcontext.connection.ExecuteAsync("DeleteTestimonial", P, commandType: CommandType.StoredProcedure);
             return 1;
         }
     }

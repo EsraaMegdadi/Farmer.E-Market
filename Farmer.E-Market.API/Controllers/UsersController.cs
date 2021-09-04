@@ -27,6 +27,14 @@ namespace Farmer.E_Market.API.Controllers
             return UserService.GetAll();
         }
 
+
+        [Route("{UserID}")]
+        [HttpGet]
+        public Users getbyid(int UserID)
+        {
+            return UserService.getbyid(UserID);
+        }
+        
         [HttpPost]
         [Route("register")]
         [ProducesResponseType(typeof(Users), StatusCodes.Status200OK)]

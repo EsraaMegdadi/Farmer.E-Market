@@ -27,6 +27,16 @@ namespace Farmer.E_Market.API.Controllers
         {
             return CategoryService.GetAll();
         }
+
+        [HttpGet]
+        [Route("{CategoryId}")]
+        public Category getbyid(int CategoryId)
+        {
+            return CategoryService.getbyid(CategoryId);
+        }
+        
+
+
         [HttpPost]
         [ProducesResponseType(typeof(List<Category>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

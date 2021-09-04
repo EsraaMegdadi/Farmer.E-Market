@@ -21,16 +21,26 @@ namespace Farmer.Infra.Repository
         }
         public List<Category> GetAll()
         {
-            IEnumerable<Category> result = DBcontext.Connection.Query<Category>("GetAllCategory", commandType: CommandType.StoredProcedure);
+            IEnumerable<Category> result = DBcontext.connection.Query<Category>("GetAllCategory", commandType: CommandType.StoredProcedure);
             return result.ToList();
+        }
+
+        public Category Getbyid(int CategoryId)
+        {
+            var P = new DynamicParameters();
+            P.Add("CategoryId", CategoryId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = DBcontext.connection.Query<Category>("GetByIdCategory", P, commandType: CommandType.StoredProcedure);
+            return result.SingleOrDefault();
         }
         public int Create(Category Data)
         {
             var p = new DynamicParameters();
             //p.Add("@CategoryID", Data.CategoryID, dbType: DbType.Int32, direction: ParameterDirection.Input);
             p.Add("CategoryName", Data.CategoryName, dbType: DbType.String, direction: ParameterDirection.Input);
+            p.Add("CategoryImage", Data.CategoryImage, dbType: DbType.String, direction: ParameterDirection.Input);
 
-            var Result = DBcontext.Connection.ExecuteAsync("CreateCategory", p, commandType: CommandType.StoredProcedure);
+
+            var Result = DBcontext.connection.ExecuteAsync("CreateCategory", p, commandType: CommandType.StoredProcedure);
             return 1;
         }
         public int Update(Category Data)
@@ -38,21 +48,23 @@ namespace Farmer.Infra.Repository
             var p = new DynamicParameters();
             p.Add("CategoryID", Data.CategoryID, dbType: DbType.Int32, direction: ParameterDirection.Input);
             p.Add("CategoryName", Data.CategoryName, dbType: DbType.String, direction: ParameterDirection.Input);
-            var Result = DBcontext.Connection.ExecuteAsync("UpdateCategory", p, commandType: CommandType.StoredProcedure);
+            p.Add("CategoryImage", Data.CategoryImage, dbType: DbType.String, direction: ParameterDirection.Input);
+
+            var Result = DBcontext.connection.ExecuteAsync("UpdateCategory", p, commandType: CommandType.StoredProcedure);
             return 1;
         }
         public int Delete(int Id)
         {
             var P = new DynamicParameters();
             P.Add("CategoryID", Id, DbType.Int32, direction: ParameterDirection.Input);
-            var Result = DBcontext.Connection.ExecuteAsync("DeleteCategory", P, commandType: CommandType.StoredProcedure);
+            var Result = DBcontext.connection.ExecuteAsync("DeleteCategory", P, commandType: CommandType.StoredProcedure);
             return 1;
         }
 
         public async Task<List<Category>> GetAllCategoryProducts()
         {
             var p = new DynamicParameters();
-            var result = await DBcontext.Connection.QueryAsync<Category, Products, Category>
+            var result = await DBcontext.connection.QueryAsync<Category, Products, Category>
             ("GetAllCategoryProducts", (category, product) =>
             {
                 category.products = category.products ?? new List<Products>();

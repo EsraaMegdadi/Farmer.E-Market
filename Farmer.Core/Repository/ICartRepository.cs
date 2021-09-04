@@ -8,6 +8,7 @@ namespace Farmer.Core.Repository
   public interface ICartRepository
     {
         List<Cart> GetAll();
+        Cart Getbyid(int CartId);
         int Create(Cart Data);
         int Update(Cart Data);
         int Delete(int Id);

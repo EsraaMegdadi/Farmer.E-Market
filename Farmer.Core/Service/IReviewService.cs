@@ -8,6 +8,7 @@ namespace Farmer.Core.Service
   public  interface IReviewService
     {
         List<Review> GetAll();
+        Review getbyid(int ReviewID);
         Review Create(Review review);
         Review Update(Review review);
         Review Delete(int id);

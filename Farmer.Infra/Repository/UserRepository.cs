@@ -23,10 +23,17 @@ namespace Farmer.Infra.Repository
     
         public List<Users> GetAll()
         {
-            IEnumerable<Users> result = DBContext.Connection.Query<Users>("GetAllUsers", commandType: CommandType.StoredProcedure);
+            IEnumerable<Users> result = DBContext.connection.Query<Users>("GetAllUsers", commandType: CommandType.StoredProcedure);
             return result.ToList();
         }
 
+        public Users Getbyid(int UserID)
+        {
+            var P = new DynamicParameters();
+            P.Add("UserID", UserID, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = DBContext.connection.Query<Users>("GetByIdUser", P, commandType: CommandType.StoredProcedure);
+            return result.SingleOrDefault();
+        }
         public int Create(Users Data)
         {
             var p = new DynamicParameters();
@@ -38,7 +45,7 @@ namespace Farmer.Infra.Repository
             p.Add("RoleId", Data.RoleId, dbType: DbType.Int32, direction: ParameterDirection.Input);
             p.Add("phoneNumber", Data.phoneNumber, dbType: DbType.String, direction: ParameterDirection.Input);
 
-            var result = DBContext.Connection.ExecuteAsync("CreateUser", p, commandType: CommandType.StoredProcedure);
+            var result = DBContext.connection.ExecuteAsync("CreateUser", p, commandType: CommandType.StoredProcedure);
             return 1;
         }
         public int Update(Users Data)
@@ -52,14 +59,14 @@ namespace Farmer.Infra.Repository
             p.Add("Address", Data.Address, dbType: DbType.Int32, direction: ParameterDirection.Input);
             p.Add("Age", Data.Age, dbType: DbType.Int32, direction: ParameterDirection.Input);
             p.Add("RoleId", Data.RoleId, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            var result = DBContext.Connection.ExecuteAsync("UpdateUsers", p, commandType: CommandType.StoredProcedure);
+            var result = DBContext.connection.ExecuteAsync("UpdateUsers", p, commandType: CommandType.StoredProcedure);
             return 1;
         }
         public int Delete(int id)
         {
             var p = new DynamicParameters();
             p.Add("@UserID", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            var result = DBContext.Connection.ExecuteAsync("DeleteUsers", p, commandType: CommandType.StoredProcedure);
+            var result = DBContext.connection.ExecuteAsync("DeleteUsers", p, commandType: CommandType.StoredProcedure);
             return 1;
 
         }
@@ -70,7 +77,7 @@ namespace Farmer.Infra.Repository
             p.Add("@UserName", customer.UserName, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("@Password", customer.Password, dbType: DbType.String, direction: ParameterDirection.Input);
 
-            var result = await DBContext.Connection.QueryAsync<Boolean>("usp_Customer_CheckValidity", p, commandType: CommandType.StoredProcedure);
+            var result = await DBContext.connection.QueryAsync<Boolean>("usp_Customer_CheckValidity", p, commandType: CommandType.StoredProcedure);
             return result.FirstOrDefault();
         }
 

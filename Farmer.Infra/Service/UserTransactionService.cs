@@ -19,7 +19,11 @@ namespace Farmer.Infra.Service
         {
             return UserTransactionRepository.GetAll();
         }
-
+        public UserTransaction getbyid(int TransactionId)
+        {
+            UserTransactionRepository.Getbyid(TransactionId);
+            return new UserTransaction();
+        }
         public UserTransaction Create(UserTransaction userTransaction)
         {
             UserTransactionRepository.Create(userTransaction);

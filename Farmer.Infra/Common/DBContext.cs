@@ -19,7 +19,7 @@ namespace Farmer.Infra.Common
             Configuration = configuration;
         }
 
-        public DbConnection Connection
+        public DbConnection connection
         {
             get
             {

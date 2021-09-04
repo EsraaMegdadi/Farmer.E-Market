@@ -9,6 +9,7 @@ namespace Farmer.Core.Service
     public interface ICategoryService
     {
         List<Category> GetAll();
+        Category getbyid(int CategoryId);
         Category Create(Category category);
         Category Update(Category category);
         Category Delete(int id);

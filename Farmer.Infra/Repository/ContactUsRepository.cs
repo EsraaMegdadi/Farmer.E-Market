@@ -21,8 +21,17 @@ namespace Farmer.Infra.Repository
 
         public List<ContactUs> GetAll()
         {
-            IEnumerable<ContactUs> result = DBContext.Connection.Query<ContactUs>("GetAllContactUs", commandType: CommandType.StoredProcedure);
+            IEnumerable<ContactUs> result = DBContext.connection.Query<ContactUs>("GetAllContactUs", commandType: CommandType.StoredProcedure);
             return result.ToList();
+        }
+
+
+        public ContactUs Getbyid(int ContactUsId)
+        {
+            var P = new DynamicParameters();
+            P.Add("ContactUsId", ContactUsId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = DBContext.connection.Query<ContactUs>("GetByIdContactUs", P, commandType: CommandType.StoredProcedure);
+            return result.SingleOrDefault();
         }
 
         public int Create(ContactUs Data)
@@ -36,7 +45,7 @@ namespace Farmer.Infra.Repository
             p.Add("LocationId", Data.LocationId, dbType: DbType.Int32, direction: ParameterDirection.Input);
             p.Add("HomePageId", Data.HomePageId, dbType: DbType.Int32, direction: ParameterDirection.Input);
 
-            var result = DBContext.Connection.ExecuteAsync("CreateContactUs", p, commandType: CommandType.StoredProcedure);
+            var result = DBContext.connection.ExecuteAsync("CreateContactUs", p, commandType: CommandType.StoredProcedure);
 
             return 1;
         }
@@ -51,7 +60,7 @@ namespace Farmer.Infra.Repository
             p.Add("EmailAddress", Data.EmailAddress, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("LocationId", Data.LocationId, dbType: DbType.Int32, direction: ParameterDirection.Input);
             p.Add("HomePageId", Data.HomePageId, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            var result = DBContext.Connection.ExecuteAsync("UpdateContactUs", p, commandType: CommandType.StoredProcedure);
+            var result = DBContext.connection.ExecuteAsync("UpdateContactUs", p, commandType: CommandType.StoredProcedure);
 
             return 1;
         }
@@ -59,7 +68,7 @@ namespace Farmer.Infra.Repository
         {
             var p = new DynamicParameters();
             p.Add("ContactUsId", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            var result = DBContext.Connection.ExecuteAsync("DeleteContactUs", p, commandType: CommandType.StoredProcedure);
+            var result = DBContext.connection.ExecuteAsync("DeleteContactUs", p, commandType: CommandType.StoredProcedure);
 
             return 1;
         }

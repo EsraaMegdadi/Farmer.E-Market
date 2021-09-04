@@ -9,6 +9,7 @@ namespace Farmer.Core.Service
  public interface IUserService
     {
         List<Users> GetAll();
+        Users getbyid(int UserID);
         Users Create(Users users);
         Users Update(Users users);
         Users Delete(int id);

@@ -8,6 +8,7 @@ namespace Farmer.Core.Service
     public interface IContactInboxService
     {
         List<ContactInbox> GetAll();
+        ContactInbox getbyid(int InboxId);
         ContactInbox Create(ContactInbox contact);
         ContactInbox Update(ContactInbox contact);
         ContactInbox Delete(int id);

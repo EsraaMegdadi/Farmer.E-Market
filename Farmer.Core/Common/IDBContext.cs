@@ -7,7 +7,7 @@ namespace Farmer.Core.Common
 {
    public interface IDBContext
     {
-        DbConnection Connection
+        DbConnection connection
         {
             get;
         }
