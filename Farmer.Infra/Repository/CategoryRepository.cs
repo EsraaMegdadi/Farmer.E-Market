@@ -37,6 +37,8 @@ namespace Farmer.Infra.Repository
             var p = new DynamicParameters();
             //p.Add("@CategoryID", Data.CategoryID, dbType: DbType.Int32, direction: ParameterDirection.Input);
             p.Add("CategoryName", Data.CategoryName, dbType: DbType.String, direction: ParameterDirection.Input);
+            p.Add("CategoryImage", Data.CategoryImage, dbType: DbType.String, direction: ParameterDirection.Input);
+
 
             var Result = DBcontext.connection.ExecuteAsync("CreateCategory", p, commandType: CommandType.StoredProcedure);
             return 1;
@@ -46,6 +48,8 @@ namespace Farmer.Infra.Repository
             var p = new DynamicParameters();
             p.Add("CategoryID", Data.CategoryID, dbType: DbType.Int32, direction: ParameterDirection.Input);
             p.Add("CategoryName", Data.CategoryName, dbType: DbType.String, direction: ParameterDirection.Input);
+            p.Add("CategoryImage", Data.CategoryImage, dbType: DbType.String, direction: ParameterDirection.Input);
+
             var Result = DBcontext.connection.ExecuteAsync("UpdateCategory", p, commandType: CommandType.StoredProcedure);
             return 1;
         }

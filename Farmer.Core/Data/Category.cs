@@ -13,6 +13,8 @@ namespace Farmer.Core.Data
         [Display(Name = "CategoryName")]
         [Required(ErrorMessage = "Enter CategoryName")]
         public string CategoryName { get; set; }
+        public string CategoryImage { get; set; }
+
 
 
         public ICollection<Products> products { get; set; }

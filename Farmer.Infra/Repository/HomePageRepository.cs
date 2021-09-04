@@ -37,10 +37,9 @@ namespace Farmer.Infra.Repository
             var p = new DynamicParameters();
             p.Add("logo", Data.Logo, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("Background", Data.Background, dbType: DbType.String, direction: ParameterDirection.Input);
-            p.Add("AboutUsId", Data.AboutUsId, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            p.Add("TestimonialId", Data.TestimonialId, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            p.Add("ReviewId", Data.ReviewId, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            
+            p.Add("SliderImage1", Data.Background, dbType: DbType.String, direction: ParameterDirection.Input);
+            p.Add("SliderImage2", Data.Background, dbType: DbType.String, direction: ParameterDirection.Input);
+            p.Add("SliderImage3", Data.Background, dbType: DbType.String, direction: ParameterDirection.Input);
 
             var result = DBContext.connection.ExecuteAsync("CreateHomePage", p, commandType: CommandType.StoredProcedure);
             return 1;
@@ -56,9 +55,10 @@ namespace Farmer.Infra.Repository
             p.Add("HomePageId", Data.HomePageId, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("logo", Data.Logo, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("Background", Data.Background, dbType: DbType.String, direction: ParameterDirection.Input);
-            p.Add("AboutUsId", Data.AboutUsId, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            p.Add("TestimonialId", Data.TestimonialId, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            p.Add("ReviewId", Data.ReviewId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("SliderImage1", Data.Background, dbType: DbType.String, direction: ParameterDirection.Input);
+            p.Add("SliderImage2", Data.Background, dbType: DbType.String, direction: ParameterDirection.Input);
+            p.Add("SliderImage3", Data.Background, dbType: DbType.String, direction: ParameterDirection.Input);
+
 
             var result = DBContext.connection.ExecuteAsync("UpdateHomePage", p, commandType: CommandType.StoredProcedure);
             return 1;

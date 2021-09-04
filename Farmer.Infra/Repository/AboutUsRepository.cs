@@ -36,6 +36,7 @@ namespace Farmer.Infra.Repository
         {
             var p = new DynamicParameters();
             p.Add("Description", Data.Description, dbType: DbType.String, direction: ParameterDirection.Input);
+            p.Add("img", Data.img, dbType: DbType.String, direction: ParameterDirection.Input);
             var result = DBContext.connection.ExecuteAsync("CreateAboutUs", p, commandType: CommandType.StoredProcedure);
 
             return 1;
@@ -45,6 +46,8 @@ namespace Farmer.Infra.Repository
             var p = new DynamicParameters();
             p.Add("AboutUsId", Data.AboutUsId, dbType: DbType.Int32, direction: ParameterDirection.Input);
             p.Add("Description", Data.Description, dbType: DbType.String, direction: ParameterDirection.Input);
+            p.Add("img", Data.img, dbType: DbType.String, direction: ParameterDirection.Input);
+
             var result = DBContext.connection.ExecuteAsync("UpdateAboutUs", p, commandType: CommandType.StoredProcedure);
 
             return 1;
