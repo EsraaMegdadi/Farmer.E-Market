@@ -78,7 +78,7 @@ namespace Farmer.E_Market.API.Controllers
                 }
                 var fileName = Path.GetFileNameWithoutExtension(file.FileName);
                 string attachmentFileName = $"{Guid.NewGuid().ToString("N")}_{fileName}.{Path.GetExtension(file.FileName).Replace(".", "")}";
-                var fullPath = Path.Combine("C:\\Users\\user\\Desktop\\Day01Project\\Day01Project\\src\\assets\\" + "images\\Uploaded File", attachmentFileName);
+                var fullPath = Path.Combine("C:\\Users\\user\\Desktop\\Day01Project\\Day01Project\\src\\assets\\" + "DBimages\\Uploaded File", attachmentFileName);
                 // C:\Users\user\Desktop\Day01Project>
                 using (var stream = new FileStream(fullPath, FileMode.Create))
                 {
