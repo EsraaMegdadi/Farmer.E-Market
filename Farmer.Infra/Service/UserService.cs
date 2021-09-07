@@ -21,6 +21,14 @@ namespace Farmer.Infra.Service
         {
             return UserRepository.GetAll();
         }
+        public List<Users> GetAllFarmers()
+        {
+            return UserRepository.GetAllFarmers();
+        }
+        public List<Users> GetAllTraders()
+        {
+            return UserRepository.GetAllTraders();
+        }
         public Users getbyid(int UserID)
         {
             UserRepository.Getbyid(UserID);
@@ -44,9 +52,9 @@ namespace Farmer.Infra.Service
             UserRepository.Delete(id);
             return new Users();
         }
-        public async Task<bool> CheckUserValidity(UsersLoginDTO customer)
-        {
-            return await UserRepository.CheckUserValidity(customer);
-        }
+        //public async Task<bool> CheckUserValidity(UsersLoginDTO customer)
+        //{
+        //    return await UserRepository.CheckUserValidity(customer);
+        //}
     }
 }

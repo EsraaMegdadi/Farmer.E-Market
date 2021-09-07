@@ -26,9 +26,27 @@ namespace Farmer.E_Market.API.Controllers
         {
             return UserService.GetAll();
         }
+        [Route("allfarmers")]
+
+        [HttpGet]
+        [ProducesResponseType(typeof(List<Users>), StatusCodes.Status200OK)]
+        public List<Users> GetAllFarmers()
+        {
+            return UserService.GetAllFarmers();
+        }
+
+        [Route("alltraders")]
+
+        [HttpGet]
+
+        [ProducesResponseType(typeof(List<Users>), StatusCodes.Status200OK)]
+        public List<Users> GetAllTraders()
+        {
+            return UserService.GetAllTraders();
+        }
 
 
-        [Route("{UserID}")]
+        [Route("UserID")]
         [HttpGet]
         public Users getbyid(int UserID)
         {
@@ -70,13 +88,13 @@ namespace Farmer.E_Market.API.Controllers
         //    return await CategoryService.GetAllCategoryProducts();
         //}
 
-        [HttpGet]
-        [Route("Login")]
-        [ProducesResponseType(typeof(List<Users>), StatusCodes.Status200OK)]
-        public async Task<bool> CheckUserValidity(UsersLoginDTO customer)
-        {
-            return await UserService.CheckUserValidity(customer);
-        }
+        //[HttpGet]
+        //[Route("Login")]
+        //[ProducesResponseType(typeof(List<Users>), StatusCodes.Status200OK)]
+        //public async Task<bool> CheckUserValidity(UsersLoginDTO customer)
+        //{
+        //    return await UserService.CheckUserValidity(customer);
+        //}
 
     }
 }

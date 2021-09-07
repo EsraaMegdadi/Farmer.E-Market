@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Farmer.Infra.Repository
 {
-  public  class UserRepository:IUserRepository
+    public class UserRepository : IUserRepository
     {
         private readonly IDBContext DBContext;
         public UserRepository(IDBContext dBContext)
@@ -20,20 +20,17 @@ namespace Farmer.Infra.Repository
             DBContext = dBContext;
         }
 
-    
-        public List<Users> GetAll()
-        {
-            IEnumerable<Users> result = DBContext.connection.Query<Users>("GetAllUsers", commandType: CommandType.StoredProcedure);
-            return result.ToList();
-        }
+        //public Task<bool> CheckUserValidity(UsersLoginDTO customer)
+        //{
+        //    var p = new DynamicParameters();
 
-        public Users Getbyid(int UserID)
-        {
-            var P = new DynamicParameters();
-            P.Add("UserID", UserID, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            var result = DBContext.connection.Query<Users>("GetByIdUser", P, commandType: CommandType.StoredProcedure);
-            return result.SingleOrDefault();
-        }
+        //    p.Add("@UserName", customer.UserName, dbType: DbType.String, direction: ParameterDirection.Input);
+        //    p.Add("@Password", customer.Password, dbType: DbType.String, direction: ParameterDirection.Input);
+
+        //    var result = await DBContext.connection.QueryAsync<Boolean>("usp_Customer_CheckValidity", p, commandType: CommandType.StoredProcedure);
+        //    return result.FirstOrDefault();
+        //}
+
         public int Create(Users Data)
         {
             var p = new DynamicParameters();
@@ -48,7 +45,63 @@ namespace Farmer.Infra.Repository
             var result = DBContext.connection.ExecuteAsync("CreateUser", p, commandType: CommandType.StoredProcedure);
             return 1;
         }
-        public int Update(Users Data)
+
+        public int Delete(int id)
+        {
+            var p = new DynamicParameters();
+            p.Add("@UserID", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = DBContext.connection.ExecuteAsync("DeleteUsers", p, commandType: CommandType.StoredProcedure);
+            return 1;
+        }
+
+        public List<Users> GetAll()
+        {
+            IEnumerable<Users> result = DBContext.connection.Query<Users>("GetAllUsers", commandType: CommandType.StoredProcedure);
+            return result.ToList();
+        }
+        public List<Users> GetAllFarmers()
+        {
+            IEnumerable<Users> result = DBContext.connection.Query<Users>("GettradersUsers", commandType: CommandType.StoredProcedure);
+            return result.ToList();
+
+        }
+        public List<Users> GetAllTraders() {
+            {
+                IEnumerable<Users> result = DBContext.connection.Query<Users>("GetFarmersUsers", commandType: CommandType.StoredProcedure);
+                return result.ToList();
+            }
+
+
+         
+
+
+           
+           
+          
+           
+
+
+            //public List<Course> Search(CourseDTO courseDTO)
+            //{
+            //    var p = new DynamicParameters();
+            //    p.Add("@CourseName", courseDTO.CourseName, dbType: DbType.String, direction: ParameterDirection.Input);
+            //    p.Add("@CategoryName", courseDTO.CategoryName, dbType: DbType.String, direction: ParameterDirection.Input);
+            //    p.Add("@DateFrom", courseDTO.DateFrom, dbType: DbType.Date, direction: ParameterDirection.Input);
+            //    p.Add("@DateTo", courseDTO.DateTo, dbType: DbType.Date, direction: ParameterDirection.Input);
+            //    IEnumerable<Course> result = DBContext.Connection.Query<Course>("SearchCourse", p, commandType: CommandType.StoredProcedure);
+            //    return result.ToList();
+            //}
+        }
+
+        public Users Getbyid(int UserID)
+        {
+            var P = new DynamicParameters();
+            P.Add("UserID", UserID, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = DBContext.connection.Query<Users>("GetByIdUser", P, commandType: CommandType.StoredProcedure);
+            return result.SingleOrDefault();      
+        }
+
+            public int Update(Users Data)
         {
             var p = new DynamicParameters();
             p.Add("UserId", Data.UserID, dbType: DbType.Int32, direction: ParameterDirection.Input);
@@ -62,35 +115,5 @@ namespace Farmer.Infra.Repository
             var result = DBContext.connection.ExecuteAsync("UpdateUsers", p, commandType: CommandType.StoredProcedure);
             return 1;
         }
-        public int Delete(int id)
-        {
-            var p = new DynamicParameters();
-            p.Add("@UserID", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            var result = DBContext.connection.ExecuteAsync("DeleteUsers", p, commandType: CommandType.StoredProcedure);
-            return 1;
-
-        }
-        public async Task<bool> CheckUserValidity(UsersLoginDTO customer)
-        {
-            var p = new DynamicParameters();
-
-            p.Add("@UserName", customer.UserName, dbType: DbType.String, direction: ParameterDirection.Input);
-            p.Add("@Password", customer.Password, dbType: DbType.String, direction: ParameterDirection.Input);
-
-            var result = await DBContext.connection.QueryAsync<Boolean>("usp_Customer_CheckValidity", p, commandType: CommandType.StoredProcedure);
-            return result.FirstOrDefault();
-        }
-
-
-        //public List<Course> Search(CourseDTO courseDTO)
-        //{
-        //    var p = new DynamicParameters();
-        //    p.Add("@CourseName", courseDTO.CourseName, dbType: DbType.String, direction: ParameterDirection.Input);
-        //    p.Add("@CategoryName", courseDTO.CategoryName, dbType: DbType.String, direction: ParameterDirection.Input);
-        //    p.Add("@DateFrom", courseDTO.DateFrom, dbType: DbType.Date, direction: ParameterDirection.Input);
-        //    p.Add("@DateTo", courseDTO.DateTo, dbType: DbType.Date, direction: ParameterDirection.Input);
-        //    IEnumerable<Course> result = DBContext.Connection.Query<Course>("SearchCourse", p, commandType: CommandType.StoredProcedure);
-        //    return result.ToList();
-        //}
     }
 }

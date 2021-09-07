@@ -9,11 +9,15 @@ namespace Farmer.Core.Repository
    public interface IUserRepository
     {
         List<Users> GetAll();
-        Users Getbyid(int UserID);
-       int Create(Users Data);
-        int Update(Users Data);
+        List<Users> GetAllFarmers();
+        List<Users> GetAllTraders();
 
-        int Delete(int id);
-        Task<bool> CheckUserValidity(UsersLoginDTO customer);
+
+      public  Users Getbyid(int UserID);
+      public int Create(Users Data);
+      public  int Update(Users Data);
+
+        public int Delete(int id);
+        //Task<bool> CheckUserValidity(UsersLoginDTO customer);
     }
 }
