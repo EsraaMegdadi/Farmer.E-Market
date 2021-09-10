@@ -42,9 +42,22 @@ namespace Farmer.Infra.Service
             return new Products();
         }
 
+
+        public List<Products> GetAllProductSoldOut()
+        {
+            return productsRepository.GetAllProductSoldOut();
+        }
+
+
+
         public List<Products> Search(ProductsDTO productsDTO)
         {
             return productsRepository.Search(productsDTO);
         }
+
+       
+    
     }
+
 }
+

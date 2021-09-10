@@ -26,8 +26,8 @@ namespace Farmer.E_Market.API.Controllers
         {
             return UserService.GetAll();
         }
-        [Route("allfarmers")]
 
+        [Route("allfarmers")]
         [HttpGet]
         [ProducesResponseType(typeof(List<Users>), StatusCodes.Status200OK)]
         public List<Users> GetAllFarmers()

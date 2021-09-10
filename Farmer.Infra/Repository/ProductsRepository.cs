@@ -79,6 +79,14 @@ namespace Farmer.Infra.Repository
             IEnumerable<Products> result = DBcontext.connection.Query<Products>("SearchProducts", p, commandType: CommandType.StoredProcedure);
             return result.ToList();
         }
+
+
+        public List<Products> GetAllProductSoldOut()
+        {
+            IEnumerable<Products> result = DBcontext.connection.Query<Products>("GetProductSoldOut", commandType: CommandType.StoredProcedure);
+            return result.ToList();
+
+        }
     }
 
  }

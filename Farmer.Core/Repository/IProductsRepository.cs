@@ -14,5 +14,7 @@ namespace Farmer.Core.Repository
         int Update(Products Data);
         int Delete(int id);
         List<Products> Search(ProductsDTO productsDTO);
+
+        List<Products> GetAllProductSoldOut();
     }
 }

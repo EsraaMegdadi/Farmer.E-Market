@@ -76,6 +76,21 @@ namespace Farmer.E_Market.API.Controllers
             return ProductsService.Search(productsDTO);
         }
 
+        [Route("ProductSoldOut")]
+        [HttpGet]
+        [ProducesResponseType(typeof(List<Products>), StatusCodes.Status200OK)]
+        public List<Products> GetAllProductSoldOut()
+        {
+            return ProductsService.GetAllProductSoldOut();
+        }
+
+
+
+
+
+
+
+
 
         [HttpPost]
         [Route("upload")]
