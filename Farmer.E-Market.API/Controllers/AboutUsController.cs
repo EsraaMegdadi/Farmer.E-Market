@@ -24,14 +24,11 @@ namespace Farmer.E_Market.API.Controllers
         {
             return AboutUsService.GetAll();
         }
-
-        [Route("{AboutUsId}")]
+        [Route("{id}")]
         [HttpGet]
-        public AboutUs getbyid(int AboutUsId)
+        public AboutUs getbyid(int id)
         {
-
-            return AboutUsService.getbyid(AboutUsId);
-              
+            return AboutUsService.GetById(id);
         }
         [HttpPost]
         [ProducesResponseType(typeof(AboutUs), StatusCodes.Status200OK)]

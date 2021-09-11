@@ -12,7 +12,7 @@ namespace Farmer.Core.Service
         List<Users> GetAllFarmers();
         List<Users> GetAllTraders();
 
-        Users getbyid(int UserID);
+        Users GetById(int id);
         Users Create(Users users);
         Users Update(Users users);
         Users Delete(int id);

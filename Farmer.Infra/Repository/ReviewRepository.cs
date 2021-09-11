@@ -23,10 +23,10 @@ namespace Farmer.Infra.Repository
             return result.ToList();
         }
 
-        public Review Getbyid(int ReviewID)
+        public Review GetById(int id)
         {
             var P = new DynamicParameters();
-            P.Add("ReviewID", ReviewID, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            P.Add("@Id", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             var result = DBcontext.connection.Query<Review>("GetByIdReview", P, commandType: CommandType.StoredProcedure);
             return result.SingleOrDefault();
         }

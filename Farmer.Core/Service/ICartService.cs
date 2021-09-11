@@ -8,7 +8,7 @@ namespace Farmer.Core.Service
    public interface ICartService
     {
         List<Cart> GetAll();
-        Cart getbyid(int CartId);
+        Cart GetById(int id);
         Cart Create(Cart Data);
         Cart Update(Cart Data);
         Cart Delete(int Id);

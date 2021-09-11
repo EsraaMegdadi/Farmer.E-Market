@@ -28,13 +28,13 @@ namespace Farmer.E_Market.API.Controllers
             return CategoryService.GetAll();
         }
 
+        [Route("{id}")]
         [HttpGet]
-        [Route("{CategoryId}")]
-        public Category getbyid(int CategoryId)
+        public Category getbyid(int id)
         {
-            return CategoryService.getbyid(CategoryId);
+            return CategoryService.GetById(id);
         }
-        
+
 
 
         [HttpPost]

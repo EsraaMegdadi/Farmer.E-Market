@@ -26,12 +26,13 @@ namespace Farmer.E_Market.API.Controllers
             return InvoiceService.GetAll();
         }
 
-        [Route("{InvoiceId}")]
+        [Route("{id}")]
         [HttpGet]
-        public Invoice getbyid(int InvoiceId)
+        public Invoice getbyid(int id)
         {
-            return InvoiceService.getbyid(InvoiceId);
+            return InvoiceService.GetById(id);
         }
+
 
         [HttpPost]
         [ProducesResponseType(typeof(Invoice), StatusCodes.Status200OK)]

@@ -26,10 +26,10 @@ namespace Farmer.Infra.Repository
             return result.ToList();
         }
 
-        public Products Getbyid(int ProductID)
+        public Products GetById(int id)
         {
             var P = new DynamicParameters();
-            P.Add("ProductID", ProductID, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            P.Add("@Id", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             var result = DBcontext.connection.Query<Products>("GetByIdProduct", P, commandType: CommandType.StoredProcedure);
             return result.SingleOrDefault();
         }

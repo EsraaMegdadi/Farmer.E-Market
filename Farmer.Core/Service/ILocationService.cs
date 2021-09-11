@@ -8,7 +8,7 @@ namespace Farmer.Core.Service
    public interface ILocationService
     {
         List<Location> GetAll();
-        Location getbyid(int LocationId);
+        Location GetById(int id);
         Location Create(Location location);
         Location Update(Location location);
         Location Delete(int id);

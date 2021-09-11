@@ -22,10 +22,10 @@ namespace Farmer.Infra.Repository
             IEnumerable<Invoice> result = DBcontext.connection.Query<Invoice>("GetAllInvoice", commandType: CommandType.StoredProcedure);
             return result.ToList();
         }
-        public Invoice Getbyid(int InvoiceId)
+        public Invoice GetById(int id)
         {
             var P = new DynamicParameters();
-            P.Add("InvoiceId", InvoiceId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            P.Add("@Id", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             var result = DBcontext.connection.Query<Invoice>("GetByIdInvoice", P, commandType: CommandType.StoredProcedure);
             return result.SingleOrDefault();
         }

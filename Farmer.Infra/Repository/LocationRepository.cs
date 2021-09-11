@@ -24,10 +24,10 @@ namespace Farmer.Infra.Repository
             IEnumerable<Location> result = DBContext.connection.Query<Location>("GetAllLocation", commandType: CommandType.StoredProcedure);
             return result.ToList();
         }
-        public Location Getbyid(int LocationId)
+        public Location GetById(int id)
         {
             var P = new DynamicParameters();
-            P.Add("LocationId", LocationId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            P.Add("@Id", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             var result = DBContext.connection.Query<Location>("GetByIdLocation", P, commandType: CommandType.StoredProcedure);
             return result.SingleOrDefault();
         }

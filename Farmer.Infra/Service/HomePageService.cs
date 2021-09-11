@@ -20,10 +20,9 @@ namespace Farmer.Infra.Service
         {
             return HomePageRepository.GetAll();
         }
-        public HomePage getbyid(int HomePageId)
+        public HomePage GetById(int id)
         {
-            HomePageRepository.Getbyid(HomePageId);
-            return new HomePage();
+            return HomePageRepository.GetById(id);
         }
         public HomePage Create(HomePage homePage)
         {

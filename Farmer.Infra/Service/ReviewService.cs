@@ -20,10 +20,9 @@ namespace Farmer.Infra.Service
             return reviewRepository.GetAll();
         }
 
-        public Review getbyid(int ReviewID)
+        public Review GetById(int id)
         {
-            reviewRepository.Getbyid(ReviewID);
-            return new Review();
+            return reviewRepository.GetById(id);
         }
         public Review Create(Review review)
         {

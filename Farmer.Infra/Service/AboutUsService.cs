@@ -19,10 +19,9 @@ namespace Farmer.Infra.Service
         {
             return AboutUsRepository.GetAll();
         }
-        public AboutUs getbyid(int AboutUsId)
+        public AboutUs GetById(int id)
         {
-             AboutUsRepository.Getbyid(AboutUsId);
-            return new AboutUs();
+            return AboutUsRepository.GetById(id);
         }
         public AboutUs Create(AboutUs aboutUs)
         {

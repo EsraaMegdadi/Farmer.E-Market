@@ -8,7 +8,7 @@ namespace Farmer.Core.Repository
     public interface IInvoiceRepository
     {
         List<Invoice> GetAll();
-        Invoice Getbyid(int InvoiceId);
+        Invoice GetById(int id);
         int Create(Invoice Data);
         int Update(Invoice Data);
         int Delete(int Id);

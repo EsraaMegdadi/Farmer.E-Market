@@ -8,7 +8,7 @@ namespace Farmer.Core.Service
    public interface IContactUsService
     {
         List<ContactUs> GetAll();
-        ContactUs getbyid(int ContactUsId);
+        ContactUs GetById(int id);
         ContactUs Create(ContactUs contact);
         ContactUs Update(ContactUs contact);
         ContactUs Delete(int id);

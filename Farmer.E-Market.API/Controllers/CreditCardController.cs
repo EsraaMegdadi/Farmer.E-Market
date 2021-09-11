@@ -26,11 +26,11 @@ namespace Farmer.E_Market.API.Controllers
             return CreditCardService.GetAll();
         }
 
-        [Route("{CreditCardId}")]
+        [Route("{id}")]
         [HttpGet]
-        public CreditCard getbyid(int CreditCardId)
+        public CreditCard getbyid(int id)
         {
-            return CreditCardService.getbyid(CreditCardId);
+            return CreditCardService.GetById(id);
         }
 
 

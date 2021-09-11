@@ -8,7 +8,7 @@ namespace Farmer.Core.Service
     public interface IInvoiceService
     {
         List<Invoice> GetAll();
-        Invoice getbyid(int InvoiceId);
+        Invoice GetById(int id);
         Invoice Create(Invoice Data);
         Invoice Update(Invoice Data);
         Invoice Delete(int Id);
