@@ -14,6 +14,8 @@ namespace Farmer.Core.Repository
         int Update(Category Data);
         int Delete(int Id);
         Task<List<Category>> GetAllCategoryProducts();
+       List <Products> GetAllFruitCat();
+        List<Products> GetAllVegetableCat();
 
     }
 }

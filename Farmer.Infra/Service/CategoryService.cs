@@ -39,6 +39,14 @@ namespace Farmer.Infra.Service
             categoryRepository.Delete(id);
             return new Category();
         }
+        public List<Products> GetAllFruitCat()
+        {
+            return categoryRepository.GetAllFruitCat();
+        }
+        public List<Products> GetAllVegetableCat()
+        {
+            return categoryRepository.GetAllVegetableCat();
+        }
 
         public async Task<List<Category>> GetAllCategoryProducts()
         {

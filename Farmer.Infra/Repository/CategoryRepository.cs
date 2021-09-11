@@ -61,6 +61,19 @@ namespace Farmer.Infra.Repository
             return 1;
         }
 
+       public List<Products> GetAllFruitCat()
+        {
+            IEnumerable<Products> result = DBcontext.connection.Query<Products>("GetAllFruitCategory", commandType: CommandType.StoredProcedure);
+            return result.ToList();
+        }
+
+        public List<Products>  GetAllVegetableCat() 
+        {
+            IEnumerable<Products> result = DBcontext.connection.Query<Products>("GetAllVegetableCategory", commandType: CommandType.StoredProcedure);
+            return result.ToList();
+        }
+
+
         public async Task<List<Category>> GetAllCategoryProducts()
         {
             var p = new DynamicParameters();

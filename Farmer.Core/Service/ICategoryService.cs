@@ -14,5 +14,8 @@ namespace Farmer.Core.Service
         Category Update(Category category);
         Category Delete(int id);
         Task<List<Category>> GetAllCategoryProducts();
+        List<Products> GetAllFruitCat();
+        List<Products> GetAllVegetableCat();
+
     }
 }

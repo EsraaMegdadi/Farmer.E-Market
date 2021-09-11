@@ -58,6 +58,24 @@ namespace Farmer.E_Market.API.Controllers
             return CategoryService.Delete(id);
         }
         [HttpGet]
+        [Route("GetAllFruitCat")]
+        [ProducesResponseType(typeof(List<Products>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public List<Products> GetAllFruitCat()
+        {
+            return CategoryService.GetAllFruitCat();
+        }
+
+        [HttpGet]
+        [Route("GetAllVegetableCat")]
+        [ProducesResponseType(typeof(List<Products>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public List<Products> GetAllVegetableCat()
+        {
+            return CategoryService.GetAllVegetableCat();
+        }
+
+        [HttpGet]
         [Route("GetAllCategoryProduct")]
         [ProducesResponseType(typeof(List<Category>), StatusCodes.Status200OK)]
         public async Task<List<Category>> GetAllCategoryProducts()
