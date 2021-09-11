@@ -26,13 +26,13 @@ namespace Farmer.E_Market.API.Controllers
             return UserTransactionService.GetAll();
         }
 
-        [Route("{ TransactionsId}")]
+        [Route("{id}")]
         [HttpGet]
-        public UserTransaction getbyid(int TransactionsId)
+        public UserTransaction getbyid(int id)
         {
-            return UserTransactionService.getbyid(TransactionsId);
+            return UserTransactionService.GetById(id);
         }
-       
+
 
 
 

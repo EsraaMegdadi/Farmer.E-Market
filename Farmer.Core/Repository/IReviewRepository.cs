@@ -8,7 +8,7 @@ namespace Farmer.Core.Repository
    public interface IReviewRepository
     {
         List<Review> GetAll();
-        Review Getbyid(int ReviewID);
+        Review GetById(int id);
         int Create(Review Data);
         int Update(Review Data);
         int Delete(int id);

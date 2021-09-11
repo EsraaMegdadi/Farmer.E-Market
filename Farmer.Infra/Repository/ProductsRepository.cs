@@ -26,10 +26,10 @@ namespace Farmer.Infra.Repository
             return result.ToList();
         }
 
-        public Products Getbyid(int ProductID)
+        public Products GetById(int id)
         {
             var P = new DynamicParameters();
-            P.Add("ProductID", ProductID, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            P.Add("@Id", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             var result = DBcontext.connection.Query<Products>("GetByIdProduct", P, commandType: CommandType.StoredProcedure);
             return result.SingleOrDefault();
         }
@@ -78,6 +78,14 @@ namespace Farmer.Infra.Repository
             p.Add("CategoryName", productsDTO.CategoryName, dbType: DbType.String, direction: ParameterDirection.Input);
             IEnumerable<Products> result = DBcontext.connection.Query<Products>("SearchProducts", p, commandType: CommandType.StoredProcedure);
             return result.ToList();
+        }
+
+
+        public List<Products> GetAllProductSoldOut()
+        {
+            IEnumerable<Products> result = DBcontext.connection.Query<Products>("GetProductSoldOut", commandType: CommandType.StoredProcedure);
+            return result.ToList();
+
         }
     }
 

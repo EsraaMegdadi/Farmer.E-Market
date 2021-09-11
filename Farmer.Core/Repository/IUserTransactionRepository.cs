@@ -8,7 +8,7 @@ namespace Farmer.Core.Repository
     public interface IUserTransactionRepository
     {
         List<UserTransaction> GetAll();
-        UserTransaction Getbyid(int TransactionsId);
+        UserTransaction GetById(int id);
         int Create(UserTransaction Data);
         int Update(UserTransaction Data);
         int Delete(int Id);

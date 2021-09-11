@@ -19,10 +19,9 @@ namespace Farmer.Infra.Service
         {
             return InvoiceRepository.GetAll();
         }
-        public Invoice getbyid(int InvoiceId)
+        public Invoice GetById(int id)
         {
-            InvoiceRepository.Getbyid(InvoiceId);
-            return new Invoice();
+            return InvoiceRepository.GetById(id);
         }
         public Invoice Create(Invoice invoice)
         {

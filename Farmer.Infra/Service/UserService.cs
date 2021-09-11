@@ -29,10 +29,9 @@ namespace Farmer.Infra.Service
         {
             return UserRepository.GetAllTraders();
         }
-        public Users getbyid(int UserID)
+        public Users GetById(int id)
         {
-            UserRepository.Getbyid(UserID);
-            return new Users();
+            return UserRepository.GetById(id);
         }
 
         public Users Create(Users users)

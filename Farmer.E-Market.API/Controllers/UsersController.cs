@@ -26,8 +26,8 @@ namespace Farmer.E_Market.API.Controllers
         {
             return UserService.GetAll();
         }
-        [Route("allfarmers")]
 
+        [Route("allfarmers")]
         [HttpGet]
         [ProducesResponseType(typeof(List<Users>), StatusCodes.Status200OK)]
         public List<Users> GetAllFarmers()
@@ -46,13 +46,12 @@ namespace Farmer.E_Market.API.Controllers
         }
 
 
-        [Route("UserID")]
+        [Route("{id}")]
         [HttpGet]
-        public Users getbyid(int UserID)
+        public Users getbyid(int id)
         {
-            return UserService.getbyid(UserID);
+            return UserService.GetById(id);
         }
-        
         [HttpPost]
         [Route("register")]
         [ProducesResponseType(typeof(Users), StatusCodes.Status200OK)]

@@ -23,10 +23,10 @@ namespace Farmer.Infra.Repository
             return result.ToList();
         }
 
-        public CreditCard Getbyid(int CreditCardId)
+        public CreditCard GetById(int id)
         {
             var P = new DynamicParameters();
-            P.Add("CreditCardId", CreditCardId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            P.Add("@Id", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             var result = DBcontext.connection.Query<CreditCard>("GetByIdCreditCard", P, commandType: CommandType.StoredProcedure);
             return result.SingleOrDefault();
         }

@@ -28,11 +28,11 @@ namespace Farmer.E_Market.API.Controllers
             return LocationService.GetAll();
         }
 
-        [Route("{LocationId}")]
+        [Route("{id}")]
         [HttpGet]
-        public Location getbyid(int LocationId)
+        public Location getbyid(int id)
         {
-            return LocationService.getbyid(LocationId);
+            return LocationService.GetById(id);
         }
 
 

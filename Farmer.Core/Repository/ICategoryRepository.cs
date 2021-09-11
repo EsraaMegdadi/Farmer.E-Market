@@ -9,7 +9,7 @@ namespace Farmer.Core.Repository
     public interface ICategoryRepository
     {
         List<Category> GetAll();
-        Category Getbyid(int CategoryId);
+        Category GetById(int id);
         int Create(Category Data);
         int Update(Category Data);
         int Delete(int Id);

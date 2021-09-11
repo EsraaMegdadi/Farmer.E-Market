@@ -27,11 +27,11 @@ namespace Farmer.E_Market.API.Controllers
             return ReviewService.GetAll();
         }
 
-        [Route("{ReviewID}")]
+        [Route("{id}")]
         [HttpGet]
-        public Review getbyid(int ReviewID)
+        public Review getbyid(int id)
         {
-            return ReviewService.getbyid(ReviewID);
+            return ReviewService.GetById(id);
         }
 
 

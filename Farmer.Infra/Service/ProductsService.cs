@@ -21,10 +21,9 @@ namespace Farmer.Infra.Service
             return productsRepository.GetAll();
         }
 
-        public Products getbyid(int ProductsID)
+        public Products GetById(int id)
         {
-            productsRepository.Getbyid(ProductsID);
-            return new Products();
+            return productsRepository.GetById(id);
         }
         public Products Create(Products products)
         {
@@ -42,9 +41,22 @@ namespace Farmer.Infra.Service
             return new Products();
         }
 
+
+        public List<Products> GetAllProductSoldOut()
+        {
+            return productsRepository.GetAllProductSoldOut();
+        }
+
+
+
         public List<Products> Search(ProductsDTO productsDTO)
         {
             return productsRepository.Search(productsDTO);
         }
+
+       
+    
     }
+
 }
+

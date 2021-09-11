@@ -8,7 +8,7 @@ namespace Farmer.Core.Service
     public interface IUserTransactionService
     {
         List<UserTransaction> GetAll();
-        UserTransaction getbyid(int TransactionId);
+        UserTransaction GetById(int id);
         UserTransaction Create(UserTransaction Data);
         UserTransaction Update(UserTransaction Data);
         UserTransaction Delete(int Id);

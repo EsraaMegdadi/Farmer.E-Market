@@ -9,10 +9,12 @@ namespace Farmer.Core.Repository
    public interface IProductsRepository
     {
         List<Products> GetAll();
-        Products Getbyid(int ProductID);
+        Products GetById(int id);
         int Create(Products Data);
         int Update(Products Data);
         int Delete(int id);
         List<Products> Search(ProductsDTO productsDTO);
+
+        List<Products> GetAllProductSoldOut();
     }
 }

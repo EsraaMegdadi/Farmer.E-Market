@@ -24,10 +24,10 @@ namespace Farmer.Infra.Repository
             return result.ToList();
 
         }
-        public HomePage Getbyid(int HomePageId)
+        public HomePage GetById(int id)
         {
             var P = new DynamicParameters();
-            P.Add("HomePageId", HomePageId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            P.Add("@Id", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             var result = DBContext.connection.Query<HomePage>("GetByIdHomePage", P, commandType: CommandType.StoredProcedure);
             return result.SingleOrDefault();
         }

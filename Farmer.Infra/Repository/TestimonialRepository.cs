@@ -22,10 +22,10 @@ namespace Farmer.Infra.Repository
             IEnumerable<Testimonial> result = DBcontext.connection.Query<Testimonial>("GetAllTestimonial", commandType: CommandType.StoredProcedure);
             return result.ToList();
         }
-        public Testimonial Getbyid(int TestimonialID)
+        public Testimonial GetById(int id)
         {
             var P = new DynamicParameters();
-            P.Add("TestimonialID", TestimonialID, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            P.Add("@Id", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             var result = DBcontext.connection.Query<Testimonial>("GetByIdTestimonial", P, commandType: CommandType.StoredProcedure);
             return result.SingleOrDefault();
         }

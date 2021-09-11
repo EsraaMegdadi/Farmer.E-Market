@@ -27,11 +27,11 @@ namespace Farmer.E_Market.API.Controllers
             return ContactInboxService.GetAll();
         }
 
-        [Route("{InboxId}")]
+        [Route("{id}")]
         [HttpGet]
-        public ContactInbox getbyid(int InboxId)
+        public ContactInbox getbyid(int id)
         {
-            return ContactInboxService.getbyid(InboxId);
+            return ContactInboxService.GetById(id);
         }
 
 

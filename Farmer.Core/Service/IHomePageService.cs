@@ -8,7 +8,7 @@ namespace Farmer.Core.Service
    public interface IHomePageService
     {
         List<HomePage> GetAll();
-        HomePage getbyid(int HomePageId);
+        HomePage GetById(int id);
         HomePage Create(HomePage homePage);
         HomePage Update(HomePage homePage);
         HomePage Delete(int id);

@@ -27,13 +27,12 @@ namespace Farmer.E_Market.API.Controllers
             return HomePageService.GetAll();
         }
 
-        [Route("{HomePageId}")]
+        [Route("{id}")]
         [HttpGet]
-        public HomePage getbyid(int HomePageId)
+        public HomePage getbyid(int id)
         {
-            return HomePageService.getbyid(HomePageId);
+            return HomePageService.GetById(id);
         }
-
 
 
 

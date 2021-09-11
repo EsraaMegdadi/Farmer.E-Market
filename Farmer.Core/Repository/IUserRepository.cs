@@ -13,8 +13,8 @@ namespace Farmer.Core.Repository
         List<Users> GetAllTraders();
 
 
-      public  Users Getbyid(int UserID);
-      public int Create(Users Data);
+      public  Users GetById(int id);
+        public int Create(Users Data);
       public  int Update(Users Data);
 
         public int Delete(int id);

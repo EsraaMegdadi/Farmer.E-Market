@@ -8,7 +8,7 @@ namespace Farmer.Core.Repository
    public interface ILocationRepository
     {
         List<Location> GetAll();
-        Location Getbyid(int LocationId);
+        Location GetById(int id);
         int Create(Location Data);
         int Update(Location Data);
         int Delete(int id);

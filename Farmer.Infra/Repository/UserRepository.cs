@@ -93,15 +93,15 @@ namespace Farmer.Infra.Repository
             //}
         }
 
-        public Users Getbyid(int UserID)
+        public Users GetById(int id)
         {
             var P = new DynamicParameters();
-            P.Add("UserID", UserID, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            P.Add("@Id", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             var result = DBContext.connection.Query<Users>("GetByIdUser", P, commandType: CommandType.StoredProcedure);
-            return result.SingleOrDefault();      
+            return result.SingleOrDefault();
         }
 
-            public int Update(Users Data)
+        public int Update(Users Data)
         {
             var p = new DynamicParameters();
             p.Add("UserId", Data.UserID, dbType: DbType.Int32, direction: ParameterDirection.Input);

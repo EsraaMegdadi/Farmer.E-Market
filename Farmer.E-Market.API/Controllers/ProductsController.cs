@@ -28,18 +28,12 @@ namespace Farmer.E_Market.API.Controllers
             return ProductsService.GetAll();
         }
 
-        [Route("{ProductID}")]
+        [Route("{id}")]
         [HttpGet]
-        public Products getbyid(int ProductID )
+        public Products getbyid(int id)
         {
-            return ProductsService.getbyid(ProductID);
+            return ProductsService.GetById(id);
         }
-
-
-
-
-
-
 
         [HttpPost]
         [ProducesResponseType(typeof(Products), StatusCodes.Status200OK)]
@@ -75,6 +69,17 @@ namespace Farmer.E_Market.API.Controllers
         {
             return ProductsService.Search(productsDTO);
         }
+
+        [Route("ProductSoldOut")]
+        [HttpGet]
+        [ProducesResponseType(typeof(List<Products>), StatusCodes.Status200OK)]
+        public List<Products> GetAllProductSoldOut()
+        {
+            return ProductsService.GetAllProductSoldOut();
+        }
+
+
+
 
 
         [HttpPost]

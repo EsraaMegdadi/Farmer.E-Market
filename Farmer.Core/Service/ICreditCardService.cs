@@ -8,7 +8,7 @@ namespace Farmer.Core.Service
    public interface ICreditCardService
     {
         List<CreditCard> GetAll();
-        CreditCard getbyid(int CreditCardId);
+        CreditCard GetById(int id);
         CreditCard Create(CreditCard CreditCard);
         CreditCard Update(CreditCard Data);
         CreditCard Delete(int Id);

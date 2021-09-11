@@ -24,13 +24,14 @@ namespace Farmer.Infra.Repository
             return result.ToList();
         }
 
-        public Cart Getbyid(int CartId)
+        public Cart GetById(int id)
         {
             var P = new DynamicParameters();
-            P.Add("CartId", CartId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            P.Add("@Id", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             var result = DBcontext.connection.Query<Cart>("GetByIdCart", P, commandType: CommandType.StoredProcedure);
             return result.SingleOrDefault();
         }
+
 
         public int Create(Cart Data)
         {

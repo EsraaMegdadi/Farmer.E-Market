@@ -26,12 +26,12 @@ namespace Farmer.E_Market.API.Controllers
                 return ContactUsService.GetAll();
             }
 
-        [Route("{ContactUsId}")]
-        [HttpGet]
-        public ContactUs getbyid(int ContactUsId)
-        {
-            return ContactUsService.getbyid(ContactUsId);
-        }
+            [Route("{id}")]
+            [HttpGet]
+            public ContactUs getbyid(int id)
+            {
+                return ContactUsService.GetById(id);
+            }
 
 
 

@@ -26,11 +26,11 @@ namespace Farmer.E_Market.API.Controllers
             return CartService.GetAll();
         }
 
-        [Route("{CartId}")]
+        [Route("{id}")]
         [HttpGet]
-        public Cart getbyid(int CartId)
+        public Cart getbyid(int id)
         {
-            return CartService.getbyid(CartId);
+            return CartService.GetById(id);
         }
 
         [HttpPost]
