@@ -1,11 +1,13 @@
-﻿using Farmer.Core.Data;
+﻿
+
+using Farmer.Core.Data;
 using Farmer.Core.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
+using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace Farmer.E_Market.API.Controllers
 {
@@ -14,8 +16,12 @@ namespace Farmer.E_Market.API.Controllers
     public class CartController : Controller
     {
         private readonly ICartService CartService;
-        public CartController(ICartService cartService)
+        private readonly IConfiguration _configuration;
+        private object errorMessage;
+
+        public CartController(ICartService cartService, IConfiguration configuration)
         {
+            _configuration = configuration;
             CartService = cartService;
         }
 
@@ -34,6 +40,7 @@ namespace Farmer.E_Market.API.Controllers
         }
 
         [HttpPost]
+
         [ProducesResponseType(typeof(Cart), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
@@ -42,6 +49,22 @@ namespace Farmer.E_Market.API.Controllers
             return CartService.Create(cart);
         }
 
+
+
+        [HttpPost]
+        [Route("order")]
+        public Cart order([FromBody] Cart cart)
+        {
+            return CartService.order1(cart);
+        }
+
+
+        [HttpGet]
+       
+        public List<Cart> userCart([FromBody] Cart cart)
+        {
+            return CartService.userCart(cart);
+        }
 
 
         [HttpPut]
@@ -58,7 +81,39 @@ namespace Farmer.E_Market.API.Controllers
         public Cart Delete(int id)
         {
             return CartService.Delete(id);
+
+        }
+        [HttpGet]
+        [Route("userCart1")]
+        public JsonResult userCart1()
+        {
+             string query = @"SELECT * from cart";
+
+                DataTable table = new DataTable();
+                string sqlDataSource = _configuration.GetConnectionString("DBConnectionString");
+                SqlDataReader myReader;
+                using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+                {
+                    myCon.Open();
+                    using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                    {
+                        myReader = myCommand.ExecuteReader();
+                        table.Load(myReader); ;
+
+                        myReader.Close();
+                        myCon.Close();
+                    }
+                }
+
+                return new JsonResult(table);
+            }
+           
+
+             
         }
 
-    }
+
+
+    
 }
+

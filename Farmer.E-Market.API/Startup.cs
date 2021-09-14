@@ -9,15 +9,19 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Farmer.E_Market.API
@@ -46,6 +50,21 @@ namespace Farmer.E_Market.API
                     builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
                 });
             });
+            services.AddControllers().AddNewtonsoftJson(options =>
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+);
+            services.AddControllersWithViews()
+    .AddNewtonsoftJson(options =>
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+);
+
+            services.AddControllersWithViews()
+               .AddNewtonsoftJson(options =>
+               options.SerializerSettings.ReferenceLoopHandling = Newtonsoft
+               .Json.ReferenceLoopHandling.Ignore)
+               .AddNewtonsoftJson(options => options.SerializerSettings.ContractResolver
+               = new DefaultContractResolver());
+
 
             services.AddAuthentication(x =>
             {
@@ -64,6 +83,22 @@ namespace Farmer.E_Market.API
 
                 };
             });
+            services.AddControllers().AddNewtonsoftJson(options =>
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+);
+
+            services.AddControllersWithViews()
+               .AddNewtonsoftJson(options =>
+               options.SerializerSettings.ReferenceLoopHandling = Newtonsoft
+               .Json.ReferenceLoopHandling.Ignore)
+               .AddNewtonsoftJson(options => options.SerializerSettings.ContractResolver
+               = new DefaultContractResolver());
+
+
+
+            //services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
+            services.AddControllers().AddNewtonsoftJson();
+           
             services.AddScoped<IDBContext, DBContext>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
