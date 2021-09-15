@@ -5,12 +5,15 @@ using System.Text;
 
 namespace Farmer.Core.Repository
 {
-  public interface ICartRepository
+    public interface ICartRepository
     {
         List<Cart> GetAll();
         Cart GetById(int id);
         int Create(Cart Data);
         int Update(Cart Data);
         int Delete(int Id);
+        public int order1(Cart Data);
+         List<Cart> payment();
+
     }
 }
