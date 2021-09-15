@@ -26,7 +26,7 @@ namespace Farmer.Core.Data
         public int ProuductId { get; set; }
 
         //public virtual Prouduct product {get; set; }
-
+      
 
         public string username { get; set; }
     }

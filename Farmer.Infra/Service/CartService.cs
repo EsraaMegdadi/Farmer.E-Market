@@ -34,6 +34,16 @@ namespace Farmer.Infra.Service
             CartRepository.order1(cart);
             return new Cart();
         }
+        public Cart order1(Cart cart)
+        {
+            CartRepository.order1(cart);
+            return new Cart();
+        }
+
+        public List<Cart> userCart(Cart Data)
+        {
+           return CartRepository.userCart(Data);
+        }
 
         public List<Cart> payment()
         {

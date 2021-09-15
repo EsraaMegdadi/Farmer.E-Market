@@ -42,11 +42,13 @@ namespace Farmer.Infra.Repository
             p.Add("ProductQuantity", Data.ProductQuantity, dbType: DbType.Int32, direction: ParameterDirection.Input);
             p.Add("CategoryID", Data.CategoryID, dbType: DbType.Int32, direction: ParameterDirection.Input);
             p.Add("UserID", Data.UserID, dbType: DbType.Int32, direction: ParameterDirection.Input);
-
-
             var Result = DBcontext.connection.ExecuteAsync("CreateProduct", p, commandType: CommandType.StoredProcedure);
             return 1;
         }
+
+
+
+
 
         public int Update(Products Data)
         {
