@@ -51,6 +51,8 @@ namespace Farmer.Infra.Repository
             par.Add("@username", Data.username, dbType: DbType.String, direction: ParameterDirection.Input);
             par.Add("@ProuductId", Data.ProuductId, dbType: DbType.Int32, direction: ParameterDirection.Input);
             par.Add("@Quantity", Data.Quantity, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            par.Add("@amount", Data.Amount, dbType: DbType.Double, direction: ParameterDirection.Input);
+
             var Result = DBcontext.connection.ExecuteAsync("OrderP", par, commandType: CommandType.StoredProcedure);
             return 1;
         }

@@ -59,12 +59,12 @@ namespace Farmer.E_Market.API.Controllers
         }
 
 
-        [HttpGet]
+        ////[HttpGet]
        
-        public List<Cart> userCart([FromBody] Cart cart)
-        {
-            return CartService.userCart(cart);
-        }
+        ////public List<Cart> userCart([FromBody] Cart cart)
+        ////{
+        ////    return CartService.userCart(cart);
+        ////}
 
 
         [HttpPut]
