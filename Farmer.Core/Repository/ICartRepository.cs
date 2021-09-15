@@ -13,7 +13,7 @@ namespace Farmer.Core.Repository
         int Update(Cart Data);
         int Delete(int Id);
         public int order1(Cart Data);
-         List<Cart> payment();
+        public List<Cart> payment();
 
     }
 }
