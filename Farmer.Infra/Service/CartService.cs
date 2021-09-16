@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Farmer.Infra.Service
 {
-   public class CartService:ICartService
+    public class CartService : ICartService
     {
         private readonly ICartRepository CartRepository;
         public CartService(ICartRepository cartRepository)
@@ -34,10 +34,20 @@ namespace Farmer.Infra.Service
             CartRepository.order1(cart);
             return new Cart();
         }
+        public Cart order1(Cart cart)
+        {
+            CartRepository.order1(cart);
+            return new Cart();
+        }
 
         public List<Cart> userCart(Cart Data)
         {
            return CartRepository.userCart(Data);
+        }
+
+        public List<Cart> payment()
+        {
+            return CartRepository.payment();
         }
 
         public Cart Update(Cart cart)

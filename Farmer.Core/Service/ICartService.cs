@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Farmer.Core.Service
 {
-   public interface ICartService
+    public interface ICartService
     {
         List<Cart> GetAll();
         Cart GetById(int id);
@@ -13,8 +13,8 @@ namespace Farmer.Core.Service
         Cart Update(Cart Data);
         Cart Delete(int Id);
         public Cart order1(Cart cart);
-        public List<Cart> userCart(Cart Data)
-;
+        List<Cart> payment();
+
 
     }
 }

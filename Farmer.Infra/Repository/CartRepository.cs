@@ -11,7 +11,7 @@ using System.Text;
 
 namespace Farmer.Infra.Repository
 {
-    public class CartRepository:ICartRepository
+    public class CartRepository : ICartRepository
     {
         private readonly IDBContext DBcontext;
         public CartRepository(IDBContext dBContext)
@@ -43,29 +43,6 @@ namespace Farmer.Infra.Repository
             var Result = DBcontext.connection.ExecuteAsync("CreateCarts", par, commandType: CommandType.StoredProcedure);
             return 1;
         }
-
-        public int order1(Cart Data)
-        {
-            var par = new DynamicParameters();
-            // par.Add("@CartId", Data.CartId, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            par.Add("@username", Data.username, dbType: DbType.String, direction: ParameterDirection.Input);
-            par.Add("@ProuductId", Data.ProuductId, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            par.Add("@Quantity", Data.Quantity, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            par.Add("@amount", Data.Amount, dbType: DbType.Double, direction: ParameterDirection.Input);
-
-            var Result = DBcontext.connection.ExecuteAsync("OrderP", par, commandType: CommandType.StoredProcedure);
-            return 1;
-        }
-
-        public List<Cart> userCart(Cart Data)
-        {
-            var par = new DynamicParameters();
-            // par.Add("@CartId", Data.CartId, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            par.Add("@username", Data.username, dbType: DbType.String, direction: ParameterDirection.Input);
-            IEnumerable<Cart> result = DBcontext.connection.Query<Cart>("userCart", par, commandType: CommandType.StoredProcedure);
-            return result.ToList();
-        }
-
         public int Update(Cart Data)
         {
             var par = new DynamicParameters();
@@ -83,6 +60,11 @@ namespace Farmer.Infra.Repository
             Par.Add("@CartId", Id, DbType.Int32, direction: ParameterDirection.Input);
             var Result = DBcontext.connection.ExecuteAsync("DeleteCarts", Par, commandType: CommandType.StoredProcedure);
             return 1;
+        }
+        public List<Cart> payment()
+        {
+            IEnumerable<Cart> result = DBcontext.connection.Query<Cart>("GetAllCarts", commandType: CommandType.StoredProcedure);
+            return result.ToList();
         }
     }
 }

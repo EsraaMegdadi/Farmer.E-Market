@@ -1,5 +1,7 @@
 ﻿
 
+using Dapper;
+using Farmer.Core.Common;
 using Farmer.Core.Data;
 using Farmer.Core.Service;
 using Microsoft.AspNetCore.Http;
@@ -8,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace Farmer.E_Market.API.Controllers
 {
@@ -18,6 +21,7 @@ namespace Farmer.E_Market.API.Controllers
         private readonly ICartService CartService;
         private readonly IConfiguration _configuration;
         private object errorMessage;
+       
 
         public CartController(ICartService cartService, IConfiguration configuration)
         {
@@ -59,12 +63,14 @@ namespace Farmer.E_Market.API.Controllers
         }
 
 
-        ////[HttpGet]
-       
-        ////public List<Cart> userCart([FromBody] Cart cart)
-        ////{
-        ////    return CartService.userCart(cart);
-        ////}
+        [HttpGet]
+        [Route("pay")]
+        [ProducesResponseType(typeof(List<Cart>), StatusCodes.Status200OK)]
+
+        public List<Cart> payment()
+        {
+            return CartService.payment();
+        }
 
 
         [HttpPut]
@@ -87,33 +93,29 @@ namespace Farmer.E_Market.API.Controllers
         [Route("userCart1")]
         public JsonResult userCart1()
         {
-             string query = @"SELECT * from cart";
+            string query = @"SELECT * from cart";
 
-                DataTable table = new DataTable();
-                string sqlDataSource = _configuration.GetConnectionString("DBConnectionString");
-                SqlDataReader myReader;
-                using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("DBConnectionString");
+            SqlDataReader myReader;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(query, myCon))
                 {
-                    myCon.Open();
-                    using (SqlCommand myCommand = new SqlCommand(query, myCon))
-                    {
-                        myReader = myCommand.ExecuteReader();
-                        table.Load(myReader); ;
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader); ;
 
-                        myReader.Close();
-                        myCon.Close();
-                    }
+                    myReader.Close();
+                    myCon.Close();
                 }
-
-                return new JsonResult(table);
             }
-           
 
-             
+            return new JsonResult(table);
         }
+       
 
 
 
-    
+    }
 }
-
