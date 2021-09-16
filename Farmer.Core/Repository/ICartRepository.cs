@@ -12,5 +12,8 @@ namespace Farmer.Core.Repository
         int Create(Cart Data);
         int Update(Cart Data);
         int Delete(int Id);
+        public int order1(Cart Data);
+        public List<Cart> userCart(Cart Data);
+
     }
 }

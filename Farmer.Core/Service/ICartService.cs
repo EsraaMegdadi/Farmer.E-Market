@@ -12,5 +12,9 @@ namespace Farmer.Core.Service
         Cart Create(Cart Data);
         Cart Update(Cart Data);
         Cart Delete(int Id);
+        public Cart order1(Cart cart);
+        public List<Cart> userCart(Cart Data)
+;
+
     }
 }

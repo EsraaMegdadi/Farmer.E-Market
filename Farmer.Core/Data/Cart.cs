@@ -26,12 +26,8 @@ namespace Farmer.Core.Data
         public int ProuductId { get; set; }
 
         //public virtual Prouduct product {get; set; }
-        [Display(Name = "UserId")]
-        [Required(ErrorMessage = "Enter UserId")]
-        [ForeignKey("UserId")]
-        public int UserId { get; set; }
+      
 
-        public virtual Users user {get; set; }
-
+        public string username { get; set; }
     }
 }
